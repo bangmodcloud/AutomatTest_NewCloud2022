@@ -23,3 +23,16 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+
+Cypress.Commands.add('login', () => {
+    cy.intercept({
+        method: 'GET',
+        url: 'https://graphql-test.bangmod.cloud/oauth/oauth/token'
+    }).as("User")
+
+    cy.visit('https://web-test.bangmod.cloud/auth/login')
+    cy.get('#email').type('Wara@gmail.com');
+    cy.get('#password').type('1234567');
+    cy.get('.btn').click();
+  })
