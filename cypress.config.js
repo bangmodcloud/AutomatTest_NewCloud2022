@@ -6,7 +6,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    //specPattern : 'cypress/e2e/Office-Datacenter-location/*.js',
+    
      specPattern : 'cypress/e2e/Customer/Create_Cloud/*.js'
   },
 });
