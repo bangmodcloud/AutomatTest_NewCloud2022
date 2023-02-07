@@ -1,4 +1,4 @@
-describe('Manage Cloud / Power Management', () => {
+describe(' Manage Network Interface / Edit network interface name.', () => {
     beforeEach(() => {
         cy.login()
     })
