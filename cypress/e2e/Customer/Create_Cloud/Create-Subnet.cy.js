@@ -1,4 +1,4 @@
-describe('Create Private Network', () => {
+describe('Create Subnet', () => {
     beforeEach(() => {
         cy.login()
     })
