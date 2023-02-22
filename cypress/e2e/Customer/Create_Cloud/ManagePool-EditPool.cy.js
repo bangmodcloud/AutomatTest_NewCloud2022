@@ -37,7 +37,7 @@ describe(' Edit Pool', () => {
         cy.get(':nth-child(2) > .app_renderer_common_button__common-button-style > .btn').click();
         cy.get('[name="name"]').clear();
         cy.get('[type="submit"]').click();
-        cy.get('.text-danger').contains('กรุณาระบุข้อมูล');
+        cy.get('.text-danger').contains('Please input data');
         cy.wait(700);
 
 
