@@ -25,13 +25,26 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('login', () => {
+
     cy.intercept({
+        url: 'https://web-test.bangmod.cloud/auth/login',
         method: 'GET',
-        url: 'https://graphql-test.bangmod.cloud/oauth/oauth/token'
     }).as("User")
 
-    cy.visit('https://web-test.bangmod.cloud/auth/login')
-    cy.get('#email').type('Wara@gmail.com');
-    cy.get('#password').type('1234567');
-    cy.get('.btn').click();
+   
+        cy.visit('https://web-test.bangmod.cloud/auth/login')
+   
+        cy.get('#username').type('qa@gmail.com');
+        cy.get('#password').type('123456');
+        cy.get('.btn').click();
+
+    
+        cy.get('.d-flex > :nth-child(1)').eq(1).type('1');
+        cy.get('.d-flex > :nth-child(2)').type('2');
+        cy.get('.d-flex > :nth-child(3)').type('3');
+        cy.get('.d-flex > :nth-child(4)').type('4');
+        cy.get('.d-flex > :nth-child(5)').type('5');
+        cy.get('.d-flex > :nth-child(6)').type('6');
+        
+    
   })
