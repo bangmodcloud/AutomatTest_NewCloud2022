@@ -11,7 +11,7 @@ describe('Delete Listener', () => {
 
     context('List Listener page', () => {
 
-    it('Usibirities(User click trash icon and click No. The system closed modal.', () => {
+    it('Usabilities(User click trash icon and click No. The system closed modal.', () => {
 
         cy.get('#cloud-collapse').click({ force: true });
         cy.get('#load-balance-collapse').first().click({ force: true });
@@ -52,7 +52,7 @@ describe('Delete Listener', () => {
 
     context('Manage Listener page', () => {
 
-        it('Usibirities(User click trash icon and click No. The system closed modal.', () => {
+        it('Usabilities(User click trash icon and click No. The system closed modal.', () => {
     
             cy.get('#cloud-collapse').click({ force: true });
             cy.get('#load-balance-collapse').first().click({ force: true });
