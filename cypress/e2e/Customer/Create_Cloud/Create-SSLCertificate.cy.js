@@ -62,7 +62,7 @@ describe('Create SSL Certificate', () => {
 
     })
 
-    it('Validation (User click Cancel button. The system close tap. )', () => {
+    it('Validation (User click Cancel button. The system close tab. )', () => {
 
         cy.get('#cloud-collapse').click({ force: true });
         cy.get('#load-balance-collapse').first().click({ force: true });
