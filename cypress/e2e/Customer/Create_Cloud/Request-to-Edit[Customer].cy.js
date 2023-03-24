@@ -15,7 +15,7 @@ describe('Manage User / Request to Edit [Customer]', () => {
 
         })
 
-        it('Validation (User edit information and click submit. If there are more than one step to Edit . The system leads to the next step to Edit.)', () => {
+        it('Validation (User edit User enter Phone number and click “Next”. If there are more than one step to Edit . The system leads to the next step to Edit.)', () => {
             cy.get('.form-control').type('0999345678');
             cy.get('[type="submit"]').click();
 
@@ -29,10 +29,8 @@ describe('Manage User / Request to Edit [Customer]', () => {
 
         })
 
-        it('Validation (User edit information and click submit. If there are more than one step to Edit . The system leads to the next step to Edit.)', () => {
-            cy.get('.form-control').type('0999345678');
-            cy.get('[type="submit"]').click();
-
+        it('Validation (User Edit Document and click submit. If there are more than one step to Edit . The system leads to the next step to Edit.)', () => {
+    
             cy.get('[for="identifierImage"]').selectFile('cypress/fixtures/Exam2.jpeg');
             cy.get('[for="selfieWithIdentifierImage"]').selectFile('cypress/fixtures/Exam1.jpeg');
             cy.get('[type="submit"]').click();
