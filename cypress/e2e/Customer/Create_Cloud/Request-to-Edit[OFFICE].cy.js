@@ -26,7 +26,7 @@ describe('Manage User / Request to Edit [OFFICE]', () => {
     })
     context(' Request to Edit : Step 1 and 2 Specify phone number)', () => {
 
-        it('Usabilities (Admin dose not enter request. The system display alert message “Please input data”)', () => {
+        it('Usabilities (Admin does not enter request. The system display alert message “Please input data”)', () => {
             cy.get('#user-management-collapse').click();
             cy.get('#all-customer').click();
             cy.get(':nth-child(12) > :nth-child(2) > a').click();
@@ -73,7 +73,7 @@ describe('Manage User / Request to Edit [OFFICE]', () => {
 
     context(' Request to Edit : Step 4 Specify personal information)', () => {
 
-        it('Usabilities (Admin dose not enter request. The system display alert message “Please input data”)', () => {
+        it('Usabilities (Admin does not enter request. The system display alert message “Please input data”)', () => {
             cy.get('#user-management-collapse').click();
             cy.get('#all-customer').click();
             cy.get(':nth-child(12) > :nth-child(2) > a').click();
@@ -119,7 +119,7 @@ describe('Manage User / Request to Edit [OFFICE]', () => {
 
     context(' Request to Edit : Step 5 Upload documents to verify identity)', () => {
 
-        it('Usabilities (Admin dose not enter request. The system display alert message “Please input data”)', () => {
+        it('Usabilities (Admin does not enter request. The system display alert message “Please input data”)', () => {
             cy.get('#user-management-collapse').click();
             cy.get('#all-customer').click();
             cy.get(':nth-child(12) > :nth-child(2) > a').click();
