@@ -41,7 +41,7 @@ describe('Login NT Flow ', () => {
 
         it('Usabilities (User click “Sign up“ is a hyperlink. The system leads to Registration page.)', () => {
 
-            cy.get('[href="#"]').click();
+            cy.get('[href="https://web-test.bangmod.cloud/registration"]').click();
 
     })
 
