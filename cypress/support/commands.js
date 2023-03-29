@@ -47,4 +47,28 @@ Cypress.Commands.add('login', () => {
         cy.get('.d-flex > :nth-child(6)').type('6');
         
     
+  }),
+  Cypress.Commands.add('loginOffice', () => {
+
+    cy.intercept({
+        url: 'https://office-test.bangmod.cloud/auth/login',
+        method: 'GET',
+    }).as("Admin")
+
+
+    cy.visit('https://office-test.bangmod.cloud/auth/login')
+/
+    cy.get('#username').type('admin@bangmod.cloud');
+    cy.get('#password').type('Adminbangmod123@');
+        cy.get('.btn').click();
+
+    
+        cy.get('.d-flex > :nth-child(1)').eq(1).type('1');
+        cy.get('.d-flex > :nth-child(2)').type('2');
+        cy.get('.d-flex > :nth-child(3)').type('3');
+        cy.get('.d-flex > :nth-child(4)').type('4');
+        cy.get('.d-flex > :nth-child(5)').type('5');
+        cy.get('.d-flex > :nth-child(6)').type('6');
+        
+    
   })
