@@ -33,9 +33,9 @@ Cypress.Commands.add('login', () => {
 
    
         cy.visit('https://web-test.bangmod.cloud/auth/login')
-   
-        cy.get('#username').type('qa@gmail.com');
-        cy.get('#password').type('123456');
+        cy.wait(700);
+        cy.get('#username').type('PlaWaraporn');
+        cy.get('#password').type('769461Pla-');
         cy.get('.btn').click();
 
     
@@ -87,7 +87,7 @@ Cypress.Commands.add('login', () => {
     cy.get('#password').type('Qatest01-');
         cy.get('.btn').click();
 
-
+    
         cy.get('.d-flex > :nth-child(1)').eq(1).type('1');
         cy.get('.d-flex > :nth-child(2)').type('2');
         cy.get('.d-flex > :nth-child(3)').type('3');
