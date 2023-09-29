@@ -1,4 +1,4 @@
-describe('Tab Volume', () => {
+describe('Tab Volume Backup', () => {
     beforeEach(() => {
         cy.on('uncaught:exception', (err, runnable) => {
             return false
