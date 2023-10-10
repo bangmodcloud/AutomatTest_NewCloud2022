@@ -56,5 +56,31 @@ describe('Super Admin Deactivate Account Admin', () => {
 
     })
 
+
     
+})
+
+describe('Admin try login account Deactivate', () => {
+    beforeEach(() => {
+        cy.on('uncaught:exception', (err, runnable) => {
+            return false
+        })
+
+        cy.wait(1000)
+
+        cy.intercept({
+            url: 'https://office-test.bangmod.cloud/auth/login',
+            method: 'GET',
+        }).as("Admin")
+
+        cy.visit('https://office-test.bangmod.cloud/auth/login')
+    })
+
+    it('Usabilities (Admin try login account Deactivate. Admin can not login', () => {
+
+            cy.get('#username').type('adminrole@gmail.com');
+            cy.get('#password').type('Qatest01-');
+            cy.get('.btn').click();
+
+    })
 })
