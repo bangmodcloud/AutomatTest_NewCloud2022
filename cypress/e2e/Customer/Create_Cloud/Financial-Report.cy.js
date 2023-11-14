@@ -11,9 +11,9 @@ describe('Financial Report', () => {
     it('Usibirities (Admin try select filter Select Month. The system displays a list of each selected Filter.)', () => {
 
         cy.get('[href="/nt/financial-report"]').click();
-        cy.wait(2000);
+        cy.wait(1000);
         cy.get('.ant-picker').click();
-        cy.get('[title="2023-06"]').click({ multiple: true });
+        cy.get('[title="2023-08"]').click({ multiple: true });
         cy.wait(700);
 
 
@@ -23,8 +23,8 @@ describe('Financial Report', () => {
     it('Usibirities (Admin search with AccountID. The system displays the searched list.)', () => {
 
         cy.get('[href="/nt/financial-report"]').click();
-        cy.wait(2000);
-        cy.get('#search').type('qa@gmail.com')
+        cy.wait(1000);
+        cy.get('#search').type('varaporn.ad@gmail.com')
         cy.wait(700);
 
 
@@ -35,7 +35,7 @@ describe('Financial Report', () => {
         The system will to sort ascending.)', () => {
 
         cy.get('[href="/nt/financial-report"]').click();
-        cy.wait(2000);
+        cy.wait(1000);
         cy.get(':nth-child(1) > .ant-table-column-sorters').click(); //AccountID
         cy.wait(500);
         cy.get(':nth-child(1) > .ant-table-column-sorters').dblclick(); //AccountID
@@ -72,9 +72,21 @@ describe('Financial Report', () => {
         cy.wait(500);
         cy.get(':nth-child(9) > .ant-table-column-sorters').dblclick(); // Remaining Credit
         cy.wait(200);
-        cy.get(':nth-child(9) > .ant-table-column-sorters').click(); // Remaining Balance
+        cy.get(':nth-child(10) > .ant-table-column-sorters').click(); // Remaining Balance
         cy.wait(500);
-        cy.get(':nth-child(9) > .ant-table-column-sorters').dblclick(); // Remaining Balance
+        cy.get(':nth-child(10) > .ant-table-column-sorters').dblclick(); // Remaining Balance
+        cy.wait(200);
+        cy.get(':nth-child(11) > .ant-table-column-sorters').click(); // Remaining Balance
+        cy.wait(500);
+        cy.get(':nth-child(11) > .ant-table-column-sorters').dblclick(); // Remaining Balance
+        cy.wait(200);
+        cy.get(':nth-child(12) > .ant-table-column-sorters').click(); // Remaining Balance
+        cy.wait(500);
+        cy.get(':nth-child(12) > .ant-table-column-sorters').dblclick(); // Remaining Balance
+        cy.wait(200);
+        cy.get(':nth-child(13) > .ant-table-column-sorters').click(); // Remaining Balance
+        cy.wait(500);
+        cy.get(':nth-child(13) > .ant-table-column-sorters').dblclick(); // Remaining Balance
         cy.wait(700);
 
 
@@ -83,7 +95,7 @@ describe('Financial Report', () => {
     it('Usibirities (Admin click hyperlink AccountID. The system leads to Manage User page.)', () => {
 
         cy.get('[href="/nt/financial-report"]').click();
-        cy.wait(2000);
+        cy.wait(1000);
         cy.get(':nth-child(2) > .ant-table-cell > .underline-link').invoke('removeAttr', 'target').click();
         cy.get('.header-30-semibold').contains('Manage User');
         cy.wait(700);
@@ -95,8 +107,32 @@ describe('Financial Report', () => {
     it('Usibirities ( Admin does not select filter data and click Export button. The system will export file all.)', () => {
 
         cy.get('[href="/nt/financial-report"]').click();
-        cy.wait(40000);
+        cy.wait(4000);
         cy.contains('Export').invoke('removeAttr','target').click();
+        cy.wait(700);
+
+
+    })
+
+    it('Usibirities ( Admin does select filter last month and click Export button. The system will export file all.)', () => {
+
+        cy.get('[href="/nt/financial-report"]').click();
+        cy.get('.row > :nth-child(1) > .btn').click();
+        cy.wait(4000);
+        cy.contains('Export').click();
+        cy.wait(700);
+
+
+    })
+
+    it('Usibirities ( Admin select filter 2 months ago and click Export button. The system will export file all.)', () => {
+
+        cy.get('[href="/nt/financial-report"]').click();
+        cy.get('.row > :nth-child(1) > .btn').click();
+        cy.wait(300);
+        cy.get('.row > :nth-child(1) > .btn').click();
+        cy.wait(4000);
+        cy.contains('Export').click();
         cy.wait(700);
 
 
