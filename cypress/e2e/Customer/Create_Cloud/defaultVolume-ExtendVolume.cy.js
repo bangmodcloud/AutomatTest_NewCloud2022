@@ -56,7 +56,7 @@ describe('Extend volume (default volume)', () => {
         cy.wait(5000);
         cy.get(':nth-child(5) > .input-group > #amount').clear().type('1024');
         cy.get('[type="submit"]').click();
-        cy.get('.text-danger').contains('The number of sizes you specified exceeds your usage quota, please specify the number of sizes less than 705 or contact Support.');
+        cy.get('.text-danger').contains('The number of sizes you specified exceeds your usage quota, please specify the number of sizes less than 700 or contact Support.');
         cy.wait(700);
 
 
@@ -106,10 +106,39 @@ describe('Extend volume (default volume)', () => {
         cy.contains('Action').click();
         cy.contains('Extend Volume').click();
         cy.wait(3000);
-        cy.get(':nth-child(5) > .input-group > #amount').clear().type('35');
+        cy.get(':nth-child(5) > .input-group > #amount').clear().type('40');
         cy.get('[type="submit"]').click();
         cy.wait(700);
 
 
     })
+
+    it('Usabilities ( User go to Billing and Cost tab Billed. The system display Items to Extend Volume.)', () => {
+
+   
+        cy.get('#billing-collapse').click({ force: true });
+        cy.get('#billing-and-cost').click({ force: true });
+        cy.wait(700);
+        cy.get(':nth-child(2) > .px-0').click();
+        cy.wait(500);
+        cy.get(':nth-child(1) > :nth-child(1) > .underline-link').should('have.text','ExtendSize-volume-cloud-sunnet-1')// change
+        
+        cy.wait(700);
+
+
+    })
+
+    it('Usabilities ( User go to My Pocket. The system display Items to Extend Volume.)', () => {
+
+   
+        cy.get('#billing-collapse').click({ force: true });
+        cy.get('#my-pocket').click({ force: true });
+        cy.wait(700);
+        cy.get(':nth-child(2) > .px-0').click();
+        cy.wait(500);
+        cy.get(':nth-child(1) > :nth-child(5) > .underline-link').should('have.text','ExtendSize-volume-cloud-sunnet-1')// change
+        
+        cy.wait(700);
+
+    })    
 })
