@@ -6,8 +6,6 @@ describe('Manage Volume Backup / Delete', () => {
         cy.login();
         cy.wait(1000)
 
-        // cy.get('.app_renderer_nt_consent_term-and-condition-modal__scroll-to-bottom-style > .d-flex > .btn').first().click();
-        // cy.get('.mx-3 > :nth-child(2) > .d-flex > .btn').first().click();
 
     })
 
@@ -15,11 +13,8 @@ describe('Manage Volume Backup / Delete', () => {
 
         it('Usibirities (User click No. The system closed modal.)', () => {
 
-            cy.get('#cloud-collapse').click({ force: true });
-            cy.get('#cloud-server-collapse').click({ force: true });
-            cy.get('#volume-collapse').first().click({ force: true });
             cy.get('#volume-backup').click();
-            cy.get(':nth-child(1) > :nth-child(7) > .row > .app_renderer_common_button__common-button-style > .btn').click(); //Delete button
+            cy.get(':nth-child(1) > :nth-child(7) > .row > .d-flex > .btn').click(); //Delete button
             cy.get('.modal-content')
                 .should('be.visible')
                 .and('contain', 'Confirm Delete Volume Backup?')
@@ -33,11 +28,8 @@ describe('Manage Volume Backup / Delete', () => {
 
         it('Action success', () => {
 
-            cy.get('#cloud-collapse').click({ force: true });
-            cy.get('#cloud-server-collapse').click({ force: true });
-            cy.get('#volume-collapse').first().click({ force: true });
             cy.get('#volume-backup').click();
-            cy.get(':nth-child(1) > :nth-child(7) > .row > .app_renderer_common_button__common-button-style > .btn').click(); //Delete button
+            cy.get(':nth-child(1) > :nth-child(7) > .row > .d-flex > .btn').click(); //Delete button
             cy.get('.modal-content')
                 .should('be.visible')
                 .and('contain', 'Confirm Delete Volume Backup?')
@@ -54,12 +46,9 @@ describe('Manage Volume Backup / Delete', () => {
 
         it('Usibirities (User click No. The system closed modal.)', () => {
 
-            cy.get('#cloud-collapse').click({ force: true });
-            cy.get('#cloud-server-collapse').click({ force: true });
-            cy.get('#volume-collapse').first().click({ force: true });
             cy.get('#volume-backup').click();
-            cy.get(':nth-child(1) > .underline-link').click();
-            cy.get('.ml-auto > .app_renderer_common_button__common-button-style > .btn').click(); //Delete button
+            cy.get(':nth-child(1) > :nth-child(1) > .underline-link').click();
+            cy.contains('Delete').click();
             cy.get('.modal-content')
                 .should('be.visible')
                 .and('contain', 'Confirm Delete Volume Backup?')
@@ -73,12 +62,9 @@ describe('Manage Volume Backup / Delete', () => {
 
         it('Action success', () => {
 
-            cy.get('#cloud-collapse').click({ force: true });
-            cy.get('#cloud-server-collapse').click({ force: true });
-            cy.get('#volume-collapse').first().click({ force: true });
             cy.get('#volume-backup').click();
-            cy.get(':nth-child(1) > .underline-link').click();
-            cy.get('.ml-auto > .app_renderer_common_button__common-button-style > .btn').click(); //Delete button
+            cy.get(':nth-child(1) > :nth-child(1) > .underline-link').click();
+            cy.contains('Delete').click();
             cy.get('.modal-content')
                 .should('be.visible')
                 .and('contain', 'Confirm Delete Volume Backup?')
@@ -89,5 +75,34 @@ describe('Manage Volume Backup / Delete', () => {
             cy.wait(1000);
 
         })
+
+        it('Usabilities ( User go to Billing and Cost tab Billed. The system display Items to Terminate Volume blackup.)', () => {
+
+   
+            cy.get('#billing-collapse').click({ force: true });
+            cy.get('#billing-and-cost').click({ force: true });
+            cy.wait(700);
+            cy.get(':nth-child(2) > .px-0').click();
+            cy.wait(500);
+            cy.get(':nth-child(1) > :nth-child(1) > .underline-link').should('have.text','TerminateVolumeBackup-backup-fortest-automic2')// change
+            
+            cy.wait(700);
+    
+    
+        })
+    
+        it('Usabilities ( User go to My Pocket. The system display Items to Terminate Volume blackup.)', () => {
+    
+       
+            cy.get('#billing-collapse').click({ force: true });
+            cy.get('#my-pocket').click({ force: true });
+            cy.wait(700);
+            cy.get(':nth-child(2) > .px-0').click();
+            cy.wait(500);
+            cy.get(':nth-child(1) > :nth-child(5) > .underline-link').should('have.text','TerminateVolumeBackup-backup-fortest-automic2')// change
+            
+            cy.wait(700);
+    
+        })    
     })
 })
