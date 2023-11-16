@@ -174,7 +174,7 @@ describe('Delete volume (default volume)', () => {
 
         })
 
-        it('Usabilities (User click No button. The system closed modal.)', () => {
+        it('Action success', () => {
 
             cy.get('#cloud-server-collapse').click({ force: true });
             cy.get('#volume').first().click({ force: true });
@@ -194,5 +194,34 @@ describe('Delete volume (default volume)', () => {
 
 
         })
+
+        it('Usabilities ( User go to Billing and Cost tab Billed. The system display Items to Terminate Volume.)', () => {
+
+   
+            cy.get('#billing-collapse').click({ force: true });
+            cy.get('#billing-and-cost').click({ force: true });
+            cy.wait(700);
+            cy.get(':nth-child(2) > .px-0').click();
+            cy.wait(500);
+            cy.get(':nth-child(1) > :nth-child(1) > .underline-link').should('have.text','TerminateVolume-volume-cloud-test-1')
+            
+            cy.wait(700);
+    
+    
+        })
+    
+        it('Usabilities ( User go to My Pocket. The system display Items to Terminate Volume.)', () => {
+    
+       
+            cy.get('#billing-collapse').click({ force: true });
+            cy.get('#my-pocket').click({ force: true });
+            cy.wait(700);
+            cy.get(':nth-child(2) > .px-0').click();
+            cy.wait(500);
+            cy.get(':nth-child(1) > :nth-child(5) > .underline-link').should('have.text','TerminateVolume-volume-cloud-test-1')
+            
+            cy.wait(700);
+    
+        })    
     })
 })
