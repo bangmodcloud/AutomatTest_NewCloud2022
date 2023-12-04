@@ -23,7 +23,7 @@ describe('Transaction History', () => {
     it('Usibirities (Admin search with AccountID. The system displays the searched list.)', () => {
 
         cy.get('[href="/nt/transaction-history"]').click();
-        cy.get('#search').type('qa@gmail.com')
+        cy.get('#search').type('varaporn.ad@gmail.com')
         cy.wait(300);
 
 
@@ -103,6 +103,30 @@ describe('Transaction History', () => {
         cy.wait(3000);
         cy.contains('Export').click();;
         cy.wait(500);
+
+
+    })
+
+    it('Usibirities ( Admin does select filter last month and click Export button. The system will export file all.)', () => {
+
+        cy.get('[href="/nt/transaction-history"]').click();
+        cy.get('.row > :nth-child(1) > .btn').click();
+        cy.wait(4000);
+        cy.contains('Export').click();
+        cy.wait(700);
+
+
+    })
+
+    it('Usibirities ( Admin select filter 2 months ago and click Export button. The system will export file all.)', () => {
+
+        cy.get('[href="/nt/transaction-history"]').click();
+        cy.get('.row > :nth-child(1) > .btn').click();
+        cy.wait(300);
+        cy.get('.row > :nth-child(1) > .btn').click();
+        cy.wait(4000);
+        cy.contains('Export').click();
+        cy.wait(700);
 
 
     })
