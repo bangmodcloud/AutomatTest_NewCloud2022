@@ -1,4 +1,4 @@
-describe('Add e-tax information juristic', () => {
+describe('Add e-tax information thai juristic ', () => {
     beforeEach(() => {
         cy.on('uncaught:exception', (err, runnable) => {
             return false
@@ -71,6 +71,21 @@ describe('Add e-tax information juristic', () => {
 
     })
 
+     it('Usabilities (User search Postal code and enter button. The system display data field Province and field district / Area.)', () => {
+
+        cy.get('#billing-collapse').click({ force: true });
+        cy.get('#confirm-payment-nt').first().click({ force: true });
+        cy.get('.card-body > :nth-child(3) > .mx-0 > .ml-3 > .far').click(); //Juristic
+        cy.wait(300);
+        cy.contains('click here').invoke('removeAttr', 'target').click();
+        cy.wait(300);
+        cy.contains('Edit').click();
+        cy.get('#rc_select_1').type('10530{enter}')
+        cy.wait(700);
+
+
+    })
+
     it('Action success', () => {
 
         cy.get('#billing-collapse').click({ force: true });
@@ -81,12 +96,11 @@ describe('Add e-tax information juristic', () => {
         cy.contains('Edit').click();
         cy.get('#juristicName').type('Wara');
         cy.get('#businessId').type('1420137872130');
-        cy.get('#branchId').type('00000');
         cy.get(':nth-child(3) > .ant-select > .ant-select-selector').click(); //Province
         cy.get(':nth-child(1) > .ant-select-item-option-content').click();
         cy.get(':nth-child(4) > .ant-select > .ant-select-selector').click(); //District / Area
         cy.get(':nth-child(1) > .ant-select-item-option-content').last().click();
-        cy.get(':nth-child(5) > .ant-select > .ant-select-selector > .ant-select-selection-search').click(); //Sub-district / Sub-area
+        cy.get(':nth-child(5) > .ant-select > .ant-select-selector > .ant-select-selection-search').click({force: true}); //Sub-district / Sub-area
         cy.get(':nth-child(1) > .ant-select-item-option-content').last().click();
         cy.get('[name="address"]').type('64')
         cy.get('[type="submit"]').click();
@@ -95,13 +109,5 @@ describe('Add e-tax information juristic', () => {
 
     })
 
-    it('Usabilities (The system must retrieve the data that has been added or saved. Shown in part 2 Tax Invoice (e-Tax))', () => {
-
-        cy.get('#billing-collapse').click({ force: true });
-        cy.get('#confirm-payment-nt').first().click({ force: true });
-        cy.get('.card-body > :nth-child(3) > .mx-0 > .ml-3 > .far').click(); //Juristic
-        cy.wait(700);
-
-
-    })
+   
 })
