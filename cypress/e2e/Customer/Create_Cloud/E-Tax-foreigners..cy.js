@@ -35,17 +35,34 @@ describe('E-Tax address information for foreigners.', () => {
 
     })
 
-    it('Usabilities (User does not enter fieldinput. The system display alert message “Please input data” .)', () => {
+    it('Usabilities (User does not enter fieldselect. The system display alert message “Please select data” ..)', () => {
 
         cy.get('#billing-collapse').click({ force: true });
         cy.get('#confirm-payment-nt').first().click({ force: true });
         cy.wait(300);
         cy.contains('click here').invoke('removeAttr','target').click();
         cy.wait(300);
-        cy.get(':nth-child(2) > .PRIMARY-TERTIARY').click(); // Edit foreigners
+        cy.contains('Edit').click();
         cy.wait(300);
+        cy.get('#address').type('64')
         cy.get('[type="submit"]').click();
-        cy.get('.text-danger').contains('Please input data');
+        cy.get('.text-danger').contains('Please select data');
+    
+        cy.wait(700);
+
+
+    })
+
+    it('Usabilities ( User search Postal code and enter button. The system display data field Province and field district / Area.)', () => {
+
+        cy.get('#billing-collapse').click({ force: true });
+        cy.get('#confirm-payment-nt').first().click({ force: true });
+        cy.wait(300);
+        cy.contains('click here').invoke('removeAttr','target').click();
+        cy.wait(300);
+        cy.contains('Edit').click();
+        cy.wait(300);
+        cy.get('#rc_select_1').type('10530{enter}')
     
         cy.wait(700);
 
@@ -59,7 +76,7 @@ describe('E-Tax address information for foreigners.', () => {
         cy.wait(300);
         cy.contains('click here').invoke('removeAttr','target').click();
         cy.wait(300);
-        cy.get(':nth-child(2) > .PRIMARY-TERTIARY').click(); // Edit foreigners
+        cy.contains('Edit').click();
         cy.wait(300);
         cy.contains('Cancel').click();
         cy.get('.modal-content')
@@ -81,15 +98,15 @@ describe('E-Tax address information for foreigners.', () => {
         cy.wait(300);
         cy.contains('click here').invoke('removeAttr','target').click();
         cy.wait(300);
-        cy.get(':nth-child(2) > .PRIMARY-TERTIARY').click(); // Edit foreigners
+        cy.contains('Edit').click();
         cy.wait(300);
-        cy.get('#country').type('South Korea');
-        cy.get('#postalCode').type('04300');
-        cy.get('#province').type('Seoul');
-        cy.get('#district').type('Yongsan');
-        cy.get('#subDistrict').type('Hangang-daero 42');
-        cy.get('#road').type('13')
-        cy.get('#address').type('7');
+        cy.get(':nth-child(3) > .ant-select > .ant-select-selector').click(); //Province
+        cy.get(':nth-child(1) > .ant-select-item-option-content').click();
+        cy.get(':nth-child(4) > .ant-select > .ant-select-selector').click(); //District / Area
+        cy.get(':nth-child(1) > .ant-select-item-option-content').last().click();
+        cy.get(':nth-child(5) > .ant-select > .ant-select-selector > .ant-select-selection-search').click({force: true}); //Sub-district / Sub-area
+        cy.get(':nth-child(1) > .ant-select-item-option-content').last().click();
+        cy.get('.col > #address').type('7');
         cy.get('[type="submit"]').click();
     
         cy.wait(700);
@@ -97,16 +114,4 @@ describe('E-Tax address information for foreigners.', () => {
 
     })
 
-    it('Usabilities (User click Type of taxpayer = Personal and click Submit. The system displays the last recorded e-Tax address information for foreigners and go to Payment Gateway page.)', () => {
-
-        cy.get('#billing-collapse').click({ force: true });
-        cy.get('#confirm-payment-nt').first().click({ force: true });
-        cy.wait(300);
-        cy.get('.mx-0 > .title-16-bold').contains('e-Tax address information for foreigners')
-        cy.wait(300);
-        cy.get('[type="submit"]').click();
-        cy.wait(700);
-
-
-    })
 })
