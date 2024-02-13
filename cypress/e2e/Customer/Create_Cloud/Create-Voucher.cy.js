@@ -29,19 +29,45 @@ describe('Create Voucher code', () => {
 
     })
 
-       it('Action success', () => {
+    it('Usabilities (The system display Modal Confirm create voucher code and admin click "No" button. The system close modal.', () => {
 
         cy.get('#voucher-code').click();
         cy.get('[href="/nt/voucher/new"]').click();
         cy.get('#subject').type('Happy Birthday');
-        cy.get(':nth-child(1) > .form-group > .app_renderer_common_datepicker__date-picker-styles > .ant-picker').click();
-        cy.get('.ant-picker-now').click();
-        cy.get(':nth-child(2) > .form-group > .app_renderer_common_datepicker__date-picker-styles > .ant-picker > .ant-picker-input > input').click();
-        cy.get('[title="2023-04-20"]').last().click();
-        cy.get('.ant-picker-ok').last().click();
+        cy.get('#detail').type('Voucher for your Birthday')
+        cy.get(':nth-child(3) > .app_renderer_common_datepicker__date-picker-styles > .ant-picker').click();
+        cy.get('.ant-picker-footer').click();
         cy.get('#quantity').type('1');
-        cy.get('#amount').type('200');
+        cy.get('#amount').type('100');
         cy.get('[type="submit"]').click();
+        cy.get('.modal-content')
+            .should('be.visible')
+            .and('contain', 'Confirm create voucher code?')
+            .wait(300)
+            .contains('button', 'No')
+            .click();
+        cy.wait(700);
+
+    })
+
+    it('Usabilities (The system display Modal Confirm create voucher code and admin click "Yes" button. The system close modal.', () => {
+
+        cy.get('#voucher-code').click();
+        cy.get('[href="/nt/voucher/new"]').click();
+        cy.get('#subject').type('Happy Birthday');
+        cy.get('#detail').type('Voucher for your Birthday')
+        cy.get(':nth-child(3) > .app_renderer_common_datepicker__date-picker-styles > .ant-picker').click();
+        cy.get('.ant-picker-footer').click();
+        cy.get('#quantity').type('1');
+        cy.get('#amount').type('100');
+        cy.get('[type="submit"]').click();
+        cy.get('.modal-content')
+            .should('be.visible')
+            .and('contain', 'Confirm create voucher code?')
+            .wait(300)
+            .contains('button', 'Yes')
+            .click();
+        cy.wait(1000);
         cy.get('.header-30-semibold').contains('Your Voucher Code has been created successfully.')
         cy.wait(700);
 
@@ -51,15 +77,20 @@ describe('Create Voucher code', () => {
 
         cy.get('#voucher-code').click();
         cy.get('[href="/nt/voucher/new"]').click();
-        cy.get('#subject').type('Happy Birthday2');
-        cy.get(':nth-child(1) > .form-group > .app_renderer_common_datepicker__date-picker-styles > .ant-picker').click();
-        cy.get('.ant-picker-now').click();
-        cy.get(':nth-child(2) > .form-group > .app_renderer_common_datepicker__date-picker-styles > .ant-picker > .ant-picker-input > input').click();
-        cy.get('[title="2023-04-20"]').last().click();
-        cy.get('.ant-picker-ok').last().click();
-        cy.get('#quantity').type('1');
-        cy.get('#amount').type('200');
+        cy.get('#subject').type('Happy Birthday');
+        cy.get('#detail').type('Voucher for your Birthday')
+        cy.get(':nth-child(3) > .app_renderer_common_datepicker__date-picker-styles > .ant-picker').click();
+        cy.get('.ant-picker-footer').click();
+        cy.get('#quantity').type('3');
+        cy.get('#amount').type('100');
         cy.get('[type="submit"]').click();
+        cy.get('.modal-content')
+            .should('be.visible')
+            .and('contain', 'Confirm create voucher code?')
+            .wait(300)
+            .contains('button', 'Yes')
+            .click();
+        cy.wait(1000);
         cy.get('.header-30-semibold').contains('Your Voucher Code has been created successfully.');
         cy.get(':nth-child(1) > .ant-table-column-sorters').dblclick(); //No.
         cy.wait(500);
@@ -80,7 +111,7 @@ describe('Create Voucher code', () => {
         cy.get(':nth-child(5) > .ant-table-column-sorters').dblclick(); //Status
         cy.wait(500);
         cy.get(':nth-child(5) > .ant-table-column-sorters').click(); //Status
-       
+
 
         cy.wait(700);
 
@@ -90,17 +121,23 @@ describe('Create Voucher code', () => {
 
         cy.get('#voucher-code').click();
         cy.get('[href="/nt/voucher/new"]').click();
-        cy.get('#subject').type('Happy Birthday3');
-        cy.get(':nth-child(1) > .form-group > .app_renderer_common_datepicker__date-picker-styles > .ant-picker').click();
-        cy.get('.ant-picker-now').click();
-        cy.get(':nth-child(2) > .form-group > .app_renderer_common_datepicker__date-picker-styles > .ant-picker > .ant-picker-input > input').click();
-        cy.get('[title="2023-04-20"]').last().click();
-        cy.get('.ant-picker-ok').last().click();
-        cy.get('#quantity').type('1');
-        cy.get('#amount').type('200');
+        cy.get('#subject').type('Happy Birthday');
+        cy.get('#detail').type('Voucher for your Birthday')
+        cy.get(':nth-child(1) > .app_renderer_common_datepicker__date-picker-styles > .ant-picker').click();
+        cy.get('.ant-picker-footer').click();
+        cy.get('#quantity').type('3');
+        cy.get('#amount').type('100');
         cy.get('[type="submit"]').click();
+        cy.get('.modal-content')
+            .should('be.visible')
+            .and('contain', 'Confirm create voucher code?')
+            .wait(300)
+            .contains('button', 'Yes')
+            .click();
+
+        cy.wait(1000);
         cy.get('.header-30-semibold').contains('Your Voucher Code has been created successfully.');
-        cy.get('.underline-link').invoke('removeAttr','target').click();
+        cy.get('.underline-link').invoke('removeAttr', 'target').click();
 
         cy.wait(700);
 
