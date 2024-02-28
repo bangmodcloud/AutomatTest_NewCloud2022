@@ -7,13 +7,16 @@ describe('[Office] Billing and Cost', () => {
 
     })
 
-    it('Usibirities (Admin search with Billing / Service / AccountID. The system displays the searched list.)', () => {
+    it('Usibirities (Admin search with Billing UID / Billing / Service. The system displays the searched list.)', () => {
 
         cy.get('[href="/nt/billing-and-cost"]').click();
         cy.get('#search').type('TerminateCloud-hostname-1-1');
         cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
         cy.wait(300);
-        cy.get('#search').clear().type('Cloud Service');
+        cy.get('#search').clear().type('65dd4d18b58a387e4ee38ed4');
+        cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
+        cy.wait(300);
+        cy.get('#search').clear().type('Volume Backup');
         cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
 
         cy.wait(300);
@@ -32,40 +35,44 @@ describe('[Office] Billing and Cost', () => {
 
     })
 
-    it('Usibirities (Admin click caret-up icon Fields Column AccountID / Billing / Service / Amount / Pay by credit  / Date and time of deduction from credit / Pay by balance / Date and time of deduction from balance)', () => {
+    it('Usibirities (Admin click caret-up icon Fields Column Billing UID / AccountID / Billing / Service / Amount / Pay by credit  / Date and time of deduction from credit / Pay by balance / Date and time of deduction from balance)', () => {
 
         cy.get('[href="/nt/billing-and-cost"]').click();
-        cy.get(':nth-child(1) > .ant-table-column-sorters').click(); //AccountID
+        cy.get(':nth-child(1) > .ant-table-column-sorters').click(); // Billing UID
         cy.wait(500);
-        cy.get(':nth-child(1) > .ant-table-column-sorters').dblclick(); //AccountID
+        cy.get(':nth-child(1) > .ant-table-column-sorters').dblclick(); // Billing UID
         cy.wait(200);
-        cy.get(':nth-child(2) > .ant-table-column-sorters').click(); //Billing 
+        cy.get(':nth-child(2) > .ant-table-column-sorters').click(); //AccountID
         cy.wait(500);
-        cy.get(':nth-child(2) > .ant-table-column-sorters').dblclick(); //Billing 
+        cy.get(':nth-child(2) > .ant-table-column-sorters').dblclick(); //AccountID
         cy.wait(200);
-        cy.get(':nth-child(3) > .ant-table-column-sorters').click(); //Service 
+        cy.get(':nth-child(3) > .ant-table-column-sorters').click(); //Billing 
         cy.wait(500);
-        cy.get(':nth-child(3) > .ant-table-column-sorters').dblclick(); //Service 
+        cy.get(':nth-child(3) > .ant-table-column-sorters').dblclick(); //Billing 
         cy.wait(200);
-        cy.get(':nth-child(4) > .ant-table-column-sorters').click(); //Amount 
+        cy.get(':nth-child(4) > .ant-table-column-sorters').click(); //Service 
         cy.wait(500);
-        cy.get(':nth-child(4) > .ant-table-column-sorters').dblclick(); //Amount 
+        cy.get(':nth-child(4) > .ant-table-column-sorters').dblclick(); //Service 
         cy.wait(200);
-        cy.get(':nth-child(5) > .ant-table-column-sorters').click(); // Pay by credit
+        cy.get(':nth-child(5) > .ant-table-column-sorters').click(); //Amount 
         cy.wait(500);
-        cy.get(':nth-child(5) > .ant-table-column-sorters').dblclick(); // Pay by credit
+        cy.get(':nth-child(5) > .ant-table-column-sorters').dblclick(); //Amount 
         cy.wait(200);
-        cy.get(':nth-child(6) > .ant-table-column-sorters').click(); // Date and time of deduction from credit
+        cy.get(':nth-child(6) > .ant-table-column-sorters').click(); // Pay by credit
         cy.wait(500);
-        cy.get(':nth-child(6) > .ant-table-column-sorters').dblclick(); // Date and time of deduction from credit
+        cy.get(':nth-child(6) > .ant-table-column-sorters').dblclick(); // Pay by credit
         cy.wait(200);
-        cy.get(':nth-child(7) > .ant-table-column-sorters').click({force: true}); // Pay by balance 
+        cy.get(':nth-child(7) > .ant-table-column-sorters').click(); // Date and time of deduction from credit
         cy.wait(500);
-        cy.get(':nth-child(7) > .ant-table-column-sorters').dblclick({force: true}); // Pay by balance 
+        cy.get(':nth-child(7) > .ant-table-column-sorters').dblclick(); // Date and time of deduction from credit
         cy.wait(200);
-        cy.get(':nth-child(8) > .ant-table-column-sorters').click({force: true}); // Date and time of deduction from balance
+        cy.get(':nth-child(8) > .ant-table-column-sorters').click({force: true}); // Pay by balance 
         cy.wait(500);
-        cy.get(':nth-child(8) > .ant-table-column-sorters').dblclick({force: true}); // Date and time of deduction from balance
+        cy.get(':nth-child(8) > .ant-table-column-sorters').dblclick({force: true}); // Pay by balance 
+        cy.wait(200);
+        cy.get(':nth-child(9) > .ant-table-column-sorters').click({force: true}); // Date and time of deduction from balance
+        cy.wait(500);
+        cy.get(':nth-child(9) > .ant-table-column-sorters').dblclick({force: true}); // Date and time of deduction from balance
         cy.wait(500);
 
 
@@ -82,21 +89,26 @@ describe('[Office] Billing and Cost', () => {
 
     })
 
-    it('Usibirities (Admin click caret-up icon Fields Column Billing Name / Usage / Amount )', () => {
+    it('Usibirities (Admin click caret-up icon Fields Column UID / Billing Name / Usage / Amount )', () => {
 
         cy.get('[href="/nt/billing-and-cost"]').click();
         cy.get(':nth-child(2) > .ant-table-cell > .underline-link').invoke('removeAttr', 'target').click();
-        cy.get(':nth-child(1) > .ant-table-column-sorters').click(); //Billing Name
         cy.wait(500);
-        cy.get(':nth-child(1) > .ant-table-column-sorters').dblclick(); //Billing Name
+        cy.get(':nth-child(1) > .ant-table-column-sorters').click(); //Billing UID
+        cy.wait(500);
+        cy.get(':nth-child(1) > .ant-table-column-sorters').dblclick(); //Billing UID
         cy.wait(200);
-        cy.get(':nth-child(2) > .ant-table-column-sorters').click(); //Usage
+        cy.get(':nth-child(2) > .ant-table-column-sorters').click(); //Billing Name
         cy.wait(500);
-        cy.get(':nth-child(2) > .ant-table-column-sorters').dblclick(); //Usage
+        cy.get(':nth-child(2) > .ant-table-column-sorters').dblclick(); //Billing Name
         cy.wait(200);
-        cy.get(':nth-child(3) > .ant-table-column-sorters').click(); //Amount
+        cy.get(':nth-child(3) > .ant-table-column-sorters').click(); //Usage
         cy.wait(500);
-        cy.get(':nth-child(3) > .ant-table-column-sorters').dblclick(); //Amount
+        cy.get(':nth-child(3) > .ant-table-column-sorters').dblclick(); //Usage
+        cy.wait(200);
+        cy.get(':nth-child(4) > .ant-table-column-sorters').click(); //Amount
+        cy.wait(500);
+        cy.get(':nth-child(4) > .ant-table-column-sorters').dblclick(); //Amount
         cy.wait(500);
 
 
