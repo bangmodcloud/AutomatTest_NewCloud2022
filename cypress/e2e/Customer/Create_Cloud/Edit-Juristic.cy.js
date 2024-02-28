@@ -28,6 +28,22 @@ describe('Edit e-tax information juristic', () => {
 
     })
 
+    it('Usabilities (User enters a Branch ID of less than 5 digits. The system display alert message “Please enter branchID 5 digit number” .)', () => {
+
+        cy.get('#billing-collapse').click({ force: true });
+        cy.get('#confirm-payment-nt').first().click({ force: true });
+        cy.get('.card-body > :nth-child(3) > .mx-0 > .ml-3 > .far').click(); //Juristic
+        cy.contains('Edit').invoke('removeAttr','target').click();
+        cy.wait(300);
+        cy.contains('Edit').click();
+        cy.get('#branchId').clear().type('00');
+        cy.get('[type="submit"]').click();
+        cy.get('.text-danger').contains('Please enter branchID 5 digit number');
+        cy.wait(700);
+
+
+    })
+
     it('Action success', () => {
 
         cy.get('#billing-collapse').click({ force: true });
@@ -44,7 +60,7 @@ describe('Edit e-tax information juristic', () => {
 
     })
 
-    it('Usabilities (User does not enter fieldinput. The system display alert message “Please input data” .)', () => {
+    it('Usabilities (User click Cancel button. The system display modal”Are you sure to leave information updating?”.)', () => {
 
         cy.get('#billing-collapse').click({ force: true });
         cy.get('#confirm-payment-nt').first().click({ force: true });
