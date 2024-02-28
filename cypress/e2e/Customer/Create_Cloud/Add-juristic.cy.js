@@ -52,6 +52,31 @@ describe('Add e-tax information juristic', () => {
 
     })
 
+    it('Usabilities (User enters a Branch ID of less than 5 digits. The system display alert message “Please enter branchID 5 digit number” .)', () => {
+
+        cy.get('#billing-collapse').click({ force: true });
+        cy.get('#confirm-payment-nt').first().click({ force: true });
+        cy.get('.card-body > :nth-child(3) > .mx-0 > .ml-3 > .far').click(); //Juristic
+        cy.contains('click here').invoke('removeAttr','target').click();
+        cy.wait(300);
+        cy.contains('Edit').click();
+        cy.get('#juristicName').type('Wara');
+        cy.get('#businessId').type('1420137872130');
+        cy.get('#branchId').clear().type('000');
+        cy.get(':nth-child(3) > .ant-select > .ant-select-selector').click(); //Province
+        cy.get(':nth-child(1) > .ant-select-item-option-content').click();
+        cy.get(':nth-child(4) > .ant-select > .ant-select-selector').click(); //District / Area
+        cy.get(':nth-child(1) > .ant-select-item-option-content').last().click();
+        cy.get(':nth-child(5) > .ant-select > .ant-select-selector > .ant-select-selection-search').click(); //Sub-district / Sub-area
+        cy.get(':nth-child(1) > .ant-select-item-option-content').last().click();
+        cy.get('[name="address"]').type('64')
+        cy.get('[type="submit"]').click();
+        cy.get('.text-danger').contains('Please enter branchID 5 digit number');
+        cy.wait(700);
+
+
+    })
+
     it('Usabilities (User does not enter fieldselect.The system display alert message “Please select data”.)', () => {
 
         cy.get('#billing-collapse').click({ force: true });
@@ -81,7 +106,6 @@ describe('Add e-tax information juristic', () => {
         cy.contains('Edit').click();
         cy.get('#juristicName').type('Wara');
         cy.get('#businessId').type('1420137872130');
-        cy.get('#branchId').type('00000');
         cy.get(':nth-child(3) > .ant-select > .ant-select-selector').click(); //Province
         cy.get(':nth-child(1) > .ant-select-item-option-content').click();
         cy.get(':nth-child(4) > .ant-select > .ant-select-selector').click(); //District / Area
