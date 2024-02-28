@@ -7,17 +7,19 @@ describe(' Billing and Cost [Tap Unbilled ]', () => {
         cy.wait(1000)
     })
 
-    it('Usabilities ( User search with Name, Service, Start Time. The system displays the searched list. If not found, it will display a message saying No Data.)', () => {
+    it('Usabilities ( User search with Resource UID , Name , Service, Start Time. The system displays the searched list. If not found, it will display a message saying No Data.)', () => {
 
         cy.get('#billing-collapse').click({ force: true });
         cy.get('#billing-and-cost').click({ force: true });
         cy.get('#search').type('Load Balancer');
         cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
+        cy.get('#search').clear().type('6501efa8c91c6c5288d2be28');
+        cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
         cy.get('#search').clear().type('Cloud Service');
         cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
         cy.get('#search').clear().type('2023-09-19');
         cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
-        cy.get('#search').clear().type('2023-08-14');
+        cy.get('#search').clear().type('No');
         cy.get('.ant-empty-description').contains('No data')
         
         cy.wait(700);
