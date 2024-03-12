@@ -1,4 +1,4 @@
-describe('[Office] Billing and Cost', () => {
+describe('[Office] User Terminate', () => {
     beforeEach(() => {
         cy.on('uncaught:exception', (err, runnable) => {
             return false
