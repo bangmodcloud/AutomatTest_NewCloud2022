@@ -1,4 +1,4 @@
-describe('[Office] Billing and Cost', () => {
+describe('[Office] User Terminate', () => {
     beforeEach(() => {
         cy.on('uncaught:exception', (err, runnable) => {
             return false
@@ -18,6 +18,18 @@ describe('[Office] Billing and Cost', () => {
         cy.wait(300);
         cy.get('#search').clear().type('2023-10-04');
         cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
+
+        cy.wait(700);
+
+    })
+
+    it('Usibirities (Admin click Hide password. The system display password of archive file.)', () => {
+
+        cy.get('[href="/nt/user-terminated"]').click();
+        cy.wait(700);
+        cy.get('.password-icon').first().click();
+        cy.get('.fa-copy').should('be.visible');
+ 
 
         cy.wait(700);
 
