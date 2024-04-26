@@ -27,12 +27,12 @@
 Cypress.Commands.add('login', () => {
 
     cy.intercept({
-        url: 'https://web-test.bangmod.cloud/auth/login',
+        url: 'https://dev-nt-web.dev.bangmod.cloud/',
         method: 'GET',
     }).as("User")
 
    
-        cy.visit('https://web-test.bangmod.cloud/auth/login')
+        cy.visit('https://dev-nt-web.dev.bangmod.cloud/')
         cy.wait(700);
         cy.get('#username').type('PlaWaraporn');
         cy.get('#password').type('769461Pla-');
@@ -51,12 +51,12 @@ Cypress.Commands.add('login', () => {
   Cypress.Commands.add('loginOffice', () => {
 
     cy.intercept({
-        url: 'https://office-test.bangmod.cloud/auth/login',
+        url: 'https://dev-nt-office.dev.bangmod.cloud/',
         method: 'GET',
     }).as("Admin")
 
 
-    cy.visit('https://office-test.bangmod.cloud/auth/login')
+    cy.visit('https://dev-nt-office.dev.bangmod.cloud/')
 /
     cy.get('#username').type('admin@bangmod.cloud');
     cy.get('#password').type('Adminbangmod123@');
