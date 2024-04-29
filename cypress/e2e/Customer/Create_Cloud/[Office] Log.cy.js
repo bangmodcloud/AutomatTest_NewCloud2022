@@ -4,7 +4,6 @@ describe('Office_Log', () => {
             return false
         })
         cy.loginOffice()
-        cy.wait(3000);
 
     })
 
@@ -15,23 +14,28 @@ describe('Office_Log', () => {
         cy.get('[id="Actor ID"]').click();
         cy.get('[id="menu-Actor ID"]').should('have.length', 1).click();
         cy.get('[id="menu-Actor ID"] > .dropdown-header > .d-flex > .btn > .fas').click();
-        cy.wait(300);
+        cy.contains("Clear all").click();
+        cy.wait(1000);
         cy.get('[id="Actor Type"]').click();
         cy.get('[id="menu-Actor Type"] > :nth-child(4)').click();
         cy.get('[id="menu-Actor Type"] > .dropdown-header > .d-flex > .btn > .fas').click();
-        cy.wait(300);
+        cy.contains("Clear all").click();
+        cy.wait(1000);
         cy.get('[id="Service Type"]').click();
         cy.get('[id="menu-Service Type"] > :nth-child(4)').click();
         cy.get('[id="menu-Service Type"] > .dropdown-header > .d-flex > .btn > .fas').click();
-        cy.wait(300);
+        cy.contains("Clear all").click();
+        cy.wait(1000);
         cy.get('#Target').click();
         cy.get('#menu-Target').should('have.length', 1).click();
         cy.get('#menu-Target > .dropdown-header > .d-flex > .btn > .fas').click();
-        cy.wait(300);
+        cy.contains("Clear all").click();
+        cy.wait(1000);
         cy.get('#Action').click();
-        cy.get('#menu-Action').should('have.length', 1).click({force: true});
+        cy.get('#menu-Action').should('have.length', 1).click();
         cy.get('#menu-Action > .dropdown-header > .d-flex > .btn > .fas').click();
-        cy.wait(300);
+        cy.contains("Clear all").click();
+
         cy.wait(700);
 
 
@@ -42,11 +46,29 @@ describe('Office_Log', () => {
 
         cy.get('[href="/nt/log"]').click();
         cy.wait(2000);
-        cy.get('.ml-auto > #search').type('2023-06-07 17:33:32');
-        cy.get('.ml-auto > #search').clear().type('System');
-        cy.get('.ml-auto > #search').clear().type('System');
-        cy.get('.ml-auto > #search').clear().type('Default Workspace');
-        cy.get('.ml-auto > #search').clear().type('WorkspaceReservedBalanceEvent');
+        cy.get('.ml-auto > #search').type('9b65f718-df3b-4c92-b730-0c667bba2695');
+        cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
+        cy.wait(700);
+        cy.get('.ml-auto > #search').clear().type('Admin');
+        cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
+        cy.wait(700);
+        cy.get('.ml-auto > #search').clear().type('49.229.179.8');
+        cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
+        cy.wait(700);
+        cy.get('.ml-auto > #search').clear().type('Network Interface');
+        cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
+        cy.wait(700);
+        cy.get('.ml-auto > #search').clear().type('	Default Workspace');
+        cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
+        cy.wait(700);
+        cy.get('.ml-auto > #search').clear().type('66272a4a1edbfd7070fc9b79');
+        cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
+        cy.wait(700);
+        cy.get('.ml-auto > #search').clear().type('LoadBalancerCreatedEvent');
+        cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
+        cy.wait(700);
+        cy.get('.ml-auto > #search').clear().type('No');
+        cy.get('.ant-empty-description').contains('No data')
         cy.wait(700);
 
 
@@ -57,7 +79,11 @@ describe('Office_Log', () => {
         cy.get('[href="/nt/log"]').click();
         cy.wait(2000);
         cy.get('.ant-picker').click();
-        cy.get('[title="2023-06"]').click({ multiple: true });
+        cy.get('.ant-picker-input-active > input').clear().type('2024-04-23 00:00:00')
+        cy.contains('OK').click();
+     
+        cy.get('.ant-picker-input-active > input').clear().type('2024-04-24 12:00:00')
+        cy.contains('OK').click();
         cy.wait(700);
 
 
