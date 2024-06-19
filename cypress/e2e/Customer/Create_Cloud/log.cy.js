@@ -10,53 +10,83 @@ describe('log', () => {
     it('Usabilities ( User try select filter Timestamp / Actor ID / Service Type / Target / Action. The system displays a list of each selected Filter.)', () => {
 
         cy.get('#service-log').click({ force: true });
+        cy.wait(2000);
         cy.get('[id="Actor ID"]').click();
         cy.get('[id="menu-Actor ID"]').should('have.length', 1).click();
-        cy.get('[id="menu-Actor ID"] > .dropdown-header > .app_renderer_common_button__common-button-style > .btn > .fas').click();
-        cy.wait(300);
+        cy.get('[id="menu-Actor ID"] > .px-0 > .d-flex > .btn').click();
+        cy.contains("Clear all").click();
+        cy.wait(1000);
+        cy.get('[id="Actor Type"]').click();
+        cy.get('[id="menu-Actor Type"] > :nth-child(4)').click();
+        cy.get('[id="menu-Actor Type"] > .px-0 > .d-flex > .btn').click();
+        cy.contains("Clear all").click();
+        cy.wait(1000);
         cy.get('[id="Service Type"]').click();
         cy.get('[id="menu-Service Type"] > :nth-child(4)').click();
-        cy.get('[id="menu-Service Type"] > .dropdown-header > .app_renderer_common_button__common-button-style > .btn > .fas').click();
-        cy.wait(300);
+        cy.get('[id="menu-Service Type"] > .px-0 > .d-flex > .btn').click();
+        cy.contains("Clear all").click();
+        cy.wait(1000);
         cy.get('#Target').click();
         cy.get('#menu-Target').should('have.length', 1).click();
-        cy.get('#menu-Target > .dropdown-header > .app_renderer_common_button__common-button-style > .btn > .fas').click();
-        cy.wait(300);
+        cy.get('#menu-Target > .px-0 > .d-flex > .btn').click();
+        cy.contains("Clear all").click();
+        cy.wait(1000);
         cy.get('#Action').click();
         cy.get('#menu-Action').should('have.length', 1).click();
-        cy.get('#menu-Action > .dropdown-header > .app_renderer_common_button__common-button-style > .btn > .fas').click();
-        cy.wait(300);
+        cy.get('#menu-Action > .px-0 > .d-flex > .btn').click();
+        cy.contains("Clear all").click();
         
         cy.wait(700);
 
 
     })
 
-    it('Usabilities ( User click “ Clear all “ buttton. All selected filters will be cleared.)', () => {
+    it('Usabilities ( User search with  Timestamp / Actor ID / Target / Action. The system displays the searched list. If not found, it will display a message saying No Data.)', () => {
 
         cy.get('#service-log').click({ force: true });
-        cy.get('[id="Actor ID"]').click();
-        cy.get('[id="menu-Actor ID"]').should('have.length', 1).click();
-        cy.get('[id="menu-Actor ID"] > .dropdown-header > .app_renderer_common_button__common-button-style > .btn > .fas').click();
-        cy.wait(300);
-        cy.get('[id="Service Type"]').click();
-        cy.get('[id="menu-Service Type"] > :nth-child(4)').click();
-        cy.get('[id="menu-Service Type"] > .dropdown-header > .app_renderer_common_button__common-button-style > .btn > .fas').click();
-        cy.wait(300);
-        cy.get('#Target').click();
-        cy.get('#menu-Target').should('have.length', 1).click();
-        cy.get('#menu-Target > .dropdown-header > .app_renderer_common_button__common-button-style > .btn > .fas').click();
-        cy.wait(300);
-        cy.get('#Action').click();
-        cy.get('#menu-Action').should('have.length', 1).click();
-        cy.get('#menu-Action > .dropdown-header > .app_renderer_common_button__common-button-style > .btn > .fas').click();
-        cy.wait(500);
-        cy.get(':nth-child(1) > .d-flex > .app_renderer_common_button__common-button-style > .btn').click();
+        cy.wait(2000);
+        cy.get('.ml-auto > .app_renderer_nt_lib_style__searchbar > #search').type('9b65f718-df3b-4c92-b730-0c667bba2695');
+        cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
+        cy.wait(700);
+        cy.get('.ml-auto > .app_renderer_nt_lib_style__searchbar > #search').clear().type('Admin');
+        cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
+        cy.wait(700);
+        cy.get('.ml-auto > .app_renderer_nt_lib_style__searchbar > #search').clear().type('49.229.179.8');
+        cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
+        cy.wait(700);
+        cy.get('.ml-auto > .app_renderer_nt_lib_style__searchbar > #search').clear().type('Network Interface');
+        cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
+        cy.wait(700);
+        cy.get('.ml-auto > .app_renderer_nt_lib_style__searchbar > #search').clear().type('	Default Workspace');
+        cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
+        cy.wait(700);
+        cy.get('.ml-auto > .app_renderer_nt_lib_style__searchbar > #search').clear().type('66272a4a1edbfd7070fc9b79');
+        cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
+        cy.wait(700);
+        cy.get('.ml-auto > .app_renderer_nt_lib_style__searchbar > #search').clear().type('LoadBalancerCreatedEvent');
+        cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
+        cy.wait(700);
+        cy.get('.ml-auto > .app_renderer_nt_lib_style__searchbar > #search').clear().type('No');
+        cy.get('.ant-empty-description').contains('No data')
+        cy.wait(700);
         
         cy.wait(700);
 
 
     })
+
+    it('Usibirities (Admin try select filter Select Month. The system displays a list of each selected Filter.)', () => {
+
+        cy.get('#service-log').click({ force: true });
+        cy.wait(2000);
+        cy.get('.ant-picker').click({force: true});
+        cy.get('[title="2024-04"]').click();
+        
+        cy.wait(700);
+
+
+    })
+
 
     it('Usabilities ( User click caret-up icon Fields Column Timestamp / Actor ID / Service Type / Target / Action. The system will to sort ascending.)', () => {
 
@@ -91,34 +121,11 @@ describe('log', () => {
 
     })
 
-    it('Usabilities ( User search with  Timestamp / Actor ID / Target / Action. The system displays the searched list. If not found, it will display a message saying No Data.)', () => {
-
-        cy.get('#service-log').click({ force: true });
-        cy.get('.ml-auto > .app_renderer_lib_style__searchbar > #search').type('2023-03-20')
-        cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
-        cy.wait(300);
-        cy.get('.ml-auto > .app_renderer_lib_style__searchbar > #search').clear().type('Admin')
-        cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
-        cy.wait(300);
-        cy.get('.ml-auto > .app_renderer_lib_style__searchbar > #search').clear().type('modvm-nuntawon-KL-1')
-        cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
-        cy.wait(300);
-        cy.get('.ml-auto > .app_renderer_lib_style__searchbar > #search').clear().type('VolumeCreatedEvent')
-        cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
-        cy.wait(300)
-        cy.get('.ml-auto > .app_renderer_lib_style__searchbar > #search').clear().type('test name');
-        cy.get('.ant-empty-description').contains('No data')
-        
-        cy.wait(700);
-
-
-    })
-
     it('Usabilities ( User click hyper link Target. The system opens a new tab to that target page.)', () => {
 
         cy.get('#service-log').click({ force: true });
         cy.wait(300);
-        cy.get(':nth-child(1) > :nth-child(6) > .underline-link').invoke('removeAttr','target').click();
+        cy.get(':nth-child(1) > :nth-child(4) > .underline-link').invoke('removeAttr','target').click();
         cy.wait(700);
 
 
