@@ -4,6 +4,7 @@ describe('Terminate Account Customer', () => {
             return false
         })
         cy.loginOffice()
+        cy.wait(5000);
 
     })
 
@@ -26,6 +27,7 @@ describe('Terminate Account Customer', () => {
         cy.wait(500);
         cy.get(':nth-child(2) > .px-0').click();
         cy.get(':nth-child(1) > :nth-child(2) > .underline-link').invoke('removeAttr', 'target').click();
+        cy.wait(1000);
         cy.contains("Delete this account").click();
 
         cy.wait(700);
@@ -124,15 +126,14 @@ describe('Terminate Account Customer', () => {
         cy.get('#user-terminated-collapse').click();
         cy.get('#user-awaiting-terminate').click();
         cy.wait(500);
-        cy.get(':nth-child(2) > .px-0').click();
-        cy.get(':nth-child(1) > :nth-child(2) > .underline-link').invoke('removeAttr', 'target').click();
+        cy.get(':nth-child(2) > :nth-child(2) > .underline-link').invoke('removeAttr', 'target').click();
         cy.contains("Delete this account").click();
         cy.wait(500);
         cy.get('#rule-0').check();
         cy.get('#rule-1').check();
         cy.get('#rule-2').check();
         cy.get('#rule-3').check();
-        cy.get(':nth-child(1) > #usernameOrEmail').type("mildsadz-nt-dev@gmail.com");
+        cy.get(':nth-child(1) > #usernameOrEmail').type("varaporn05@gmail.com");
         cy.get(':nth-child(2) > #usernameOrEmail').type("delete account customer");
         cy.get('[type="submit"]').click();
         cy.wait(700);

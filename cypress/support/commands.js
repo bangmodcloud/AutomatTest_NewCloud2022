@@ -34,7 +34,7 @@ Cypress.Commands.add('login', () => {
    
         cy.visit('https://dev-nt-web.dev.bangmod.cloud/')
         cy.wait(700);
-        cy.get('#username').type('varaporn02');
+        cy.get('#username').type('vavara04');
         cy.get('#password').type('769461Pla-');
         cy.get('.btn').click();
 
