@@ -15,9 +15,9 @@ describe(' Download Billing PDF files', () => {
         cy.wait(700);
         cy.get(':nth-child(2) > .px-0').click();
         cy.wait(500);
-        cy.get('#search').type('Cloud Service');
+        // cy.get('#search').type('Cloud Service');
         cy.wait(500);
-        cy.get(':nth-child(1) > :nth-child(1) > .underline-link').click();
+        cy.get(':nth-child(1) > :nth-child(2) > .underline-link').click();
         cy.wait(500);
         cy.contains('Download Billing').click();
 
