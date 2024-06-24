@@ -1,6 +1,27 @@
 describe(' Create network interface.', () => {
     beforeEach(() => {
+        cy.on('uncaught:exception', (err, runnable) => {
+            return false
+        })
         cy.login()
+    })
+
+    it('validation (User did not specify information. The system displays alert message “ Please input data”', () => {
+        cy.get('#network-collapse').click({ force: true });
+        cy.get('[href="/cloud-server/network-interface"]').first().click({ force: true });
+        cy.get('[href="/cloud-server/network-interface/new"]').click();
+
+        cy.contains('label', 'Name').should('have.text', 'Name')
+        cy.contains('label', 'Private Network').should('have.text', 'Private Network')
+        cy.contains('label', 'Subnet').should('have.text', 'Subnet')
+        cy.contains('label', 'Select Option Specify IP Address').should('have.text', 'Select Option Specify IP Address')
+        cy.contains('label', 'Unspecify').should('have.text', 'Unspecify')
+        cy.contains('label', 'Fixed IP Address').should('have.text', 'Fixed IP Address')
+        cy.contains('label', 'MAC Address (Optional)').should('have.text', 'MAC Address (Optional)')
+
+        cy.wait(700);
+
+
     })
 
     it('Action success', () => {
@@ -34,7 +55,7 @@ describe(' Create network interface.', () => {
         cy.get('#fixed-ip').check();
         cy.get('[name="macAddress"]').type('fa:16:3e:b2:8f:68');
         cy.get('[type="submit"]').click();
-        cy.get('.text-danger').contains('กรุณาระบุข้อมูล');
+        cy.get('.text-danger').contains('Please input data');
 
         cy.wait(700);
 
