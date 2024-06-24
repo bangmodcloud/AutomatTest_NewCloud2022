@@ -59,7 +59,6 @@ describe('Create Cloud Normal Flow', () => {
         it('Usibirities ( The system displayed field labels ))', () => {
 
             cy.contains('Create Cloud Server').click();
-
             cy.wait(500);
             cy.get('[type="submit"]').click();
             cy.wait(500);
@@ -139,7 +138,6 @@ describe('Create Cloud Normal Flow', () => {
         it('Usilibities (The system display alert note “Password จะถูกส่งไปที่ Email ของคุณหลังจากการสร้าง Cloud สำเร็จ: Link Email ””)', () => {
 
             cy.contains('Create Cloud Server').click();
-
             cy.wait(500);
             cy.get('[type="submit"]').click();
             cy.wait(500);
@@ -159,7 +157,6 @@ describe('Create Cloud Normal Flow', () => {
         it('Usibirities ( The system displayed field labels )', () => {
 
             cy.contains('Create Cloud Server').click();
-
             cy.wait(500);
             cy.get('[type="submit"]').click();
             cy.wait(500);
@@ -256,7 +253,6 @@ describe('Create Cloud Normal Flow', () => {
         it('Validation (User click Create without clicking checkbox. The system display alert “Please accept the terms and conditions of service.”.', () => {
 
             cy.contains('Create Cloud Server').click();
-
             cy.wait(500);
             cy.get('[type="submit"]').click();
             cy.wait(500);
@@ -277,7 +273,6 @@ describe('Create Cloud Normal Flow', () => {
         it('Validation (User click Create without clicking checkbox. The system display alert “กรุณายอมรับข้อกำหนดและเงื่อนไขการใช้บริการ”.', () => {
 
             cy.contains('Create Cloud Server').click();
-
             cy.wait(500);
             cy.get('[type="submit"]').click();
             cy.wait(500);
@@ -299,7 +294,6 @@ describe('Create Cloud Normal Flow', () => {
         it('Usibirities (User click Top Up button. The system open new tab leads to Top Up page.', () => {
 
             cy.contains('Create Cloud Server').click();
-
             cy.wait(500);
             cy.get('[type="submit"]').click();
             cy.wait(500);

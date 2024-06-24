@@ -1,4 +1,4 @@
-describe(' Create Keypair', () => {
+describe('Create Keypair', () => {
     beforeEach(() => {
         cy.on('uncaught:exception', (err, runnable) => {
             return false
@@ -91,6 +91,26 @@ describe(' Create Keypair', () => {
 
 
         })
+
+        context('Manage Keypair', () => {
+
+
+            it('Usibirities (The system displayed field labels)', () => {
+
+                cy.get('[href="/cloud-server/keypair"]').first().click({ force: true });
+                cy.contains('Create Keypair').click(); //Create button
+                cy.contains('label', 'Name').should('have.text', 'Name')
+                cy.contains('label', 'Public Key').should('have.text', 'Public Key')
+                cy.contains('label', 'Keypair Fingerprint').should('have.text', 'Keypair Fingerprint')
+                cy.contains('label', 'Date Added').should('have.text', 'Date Added')
+
+                cy.wait(700);
+
+
+            })
+        })
+
+
 
     })
 })
