@@ -53,7 +53,7 @@ describe('Create Keypair', () => {
 
         })
 
-
+        
 
         it('validation (User import Keypair a file that is not an irrelevant file. The system displays modal “สร้าง Keypair ไม่สำเร็จ”', () => {
 
@@ -83,7 +83,7 @@ describe('Create Keypair', () => {
             cy.contains('Create Keypair').click(); //Create button
             cy.get('[name="name"]').type('test');
             cy.get('#generateKeypair').check();
-            cy.contains('button', 'Generate keypair').click();
+            cy.contains('button','Generate keypair').click(); 
             cy.wait(700);
             cy.get('[type="submit"]').click();
 
