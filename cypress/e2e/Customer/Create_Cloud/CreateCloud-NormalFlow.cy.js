@@ -41,16 +41,16 @@ describe('Create Cloud Normal Flow', () => {
     context('Step 2. Choose Size.', () => {
 
 
-    it('Usilibities (The system will display the selected information. It will be selected as the first item of Size and display alert note “Private Network Speed ของ Data Transfer จะอยู่ที่ 1.500 Mbps”).', () => {
+        it('Usilibities (The system will display the selected information. It will be selected as the first item of Size and display alert note “Private Network Speed ของ Data Transfer จะอยู่ที่ 1.500 Mbps”).', () => {
 
-        cy.contains('Create Cloud Server').click();
-       
-        cy.wait(500);
-        cy.get('[type="submit"]').click();
-        cy.get('.ant-radio-input').should('be.checked')
+            cy.contains('Create Cloud Server').click();
+
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.get('.ant-radio-input').should('be.checked')
 
 
-    })
+        })
 
     })
 
@@ -59,7 +59,6 @@ describe('Create Cloud Normal Flow', () => {
         it('Usibirities ( The system displayed field labels ))', () => {
 
             cy.contains('Create Cloud Server').click();
-            
             cy.wait(500);
             cy.get('[type="submit"]').click();
             cy.wait(500);
@@ -70,67 +69,67 @@ describe('Create Cloud Normal Flow', () => {
         })
 
 
-            it('Usilibities (The system will display Prefill as the minimum value that the user can specify.)', () => {
+        it('Usilibities (The system will display Prefill as the minimum value that the user can specify.)', () => {
 
-                cy.contains('Create Cloud Server').click();
-                cy.get('[href="/cloud-server/instance"]').first().click({ force: true });
-                cy.get('[href="/cloud-server/new"]').click();
-                cy.wait(500);
-                cy.get('[type="submit"]').click();
-                cy.wait(500);
-                cy.get('[type="submit"]').click();
-                cy.get('[type="number"]').should('value', '10');
-                cy.wait(700);
+            cy.contains('Create Cloud Server').click();
+            cy.get('[href="/cloud-server/instance"]').first().click({ force: true });
+            cy.get('[href="/cloud-server/new"]').click();
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.get('[type="number"]').should('value', '10');
+            cy.wait(700);
 
-            })
+        })
 
-            it('Validation (User did not specify Size of SSD disks. The system display alert message “Please input data”)', () => {
+        it('Validation (User did not specify Size of SSD disks. The system display alert message “Please input data”)', () => {
 
-                cy.contains('Create Cloud Server').click();
-                cy.get('[href="/cloud-server/instance"]').first().click({ force: true });
-                cy.get('[href="/cloud-server/new"]').click();
-                cy.wait(500);
-                cy.get('[type="submit"]').click();
-                cy.wait(500);
-                cy.get('[type="submit"]').click();
-                cy.get('[type="number"]').clear();
-                cy.get('[type="submit"]').click();
-                cy.get('.text-danger').contains('Please input data');
-                cy.wait(700);
+            cy.contains('Create Cloud Server').click();
+            cy.get('[href="/cloud-server/instance"]').first().click({ force: true });
+            cy.get('[href="/cloud-server/new"]').click();
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.get('[type="number"]').clear();
+            cy.get('[type="submit"]').click();
+            cy.get('.text-danger').contains('Please input data');
+            cy.wait(700);
 
-            })
+        })
 
-            it('Validation (User specify size disk less than 30. The system display alert message “กรุณากรอกจำนวนมากกว่า หรือเท่ากับ 30 ขึ้นไป”)', () => {
+        it('Validation (User specify size disk less than 30. The system display alert message “กรุณากรอกจำนวนมากกว่า หรือเท่ากับ 30 ขึ้นไป”)', () => {
 
-                cy.contains('Create Cloud Server').click();
-                cy.get('[href="/cloud-server/instance"]').first().click({ force: true });
-                cy.get('[href="/cloud-server/new"]').click();
-                cy.wait(500);
-                cy.get('[type="submit"]').click();
-                cy.wait(500);
-                cy.get('[type="submit"]').click();
-                cy.get('[type="number"]').clear().type('1');
-                cy.get('[type="submit"]').click();
-                cy.get('.text-danger').contains('Please enter a number greater than or equal to 10');
-                cy.wait(700);
+            cy.contains('Create Cloud Server').click();
+            cy.get('[href="/cloud-server/instance"]').first().click({ force: true });
+            cy.get('[href="/cloud-server/new"]').click();
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.get('[type="number"]').clear().type('1');
+            cy.get('[type="submit"]').click();
+            cy.get('.text-danger').contains('Please enter a number greater than or equal to 10');
+            cy.wait(700);
 
-            })
+        })
 
-            it('Usilibities (User hover over the Advanced Network Setting button. The system display tooltip to tell the user the meaning of Advance Network Setting.”)', () => {
+        it('Usilibities (User hover over the Advanced Network Setting button. The system display tooltip to tell the user the meaning of Advance Network Setting.”)', () => {
 
-                cy.contains('Create Cloud Server').click();
-                cy.get('[href="/cloud-server/instance"]').first().click({ force: true });
-                cy.get('[href="/cloud-server/new"]').click();
-                cy.wait(500);
-                cy.get('[type="submit"]').click();
-                cy.wait(500);
-                cy.get('[type="submit"]').click();
-                cy.contains('Advance Network Setting').trigger('mouseover');
-                cy.wait(200)
-                cy.get('.ant-tooltip-inner').contains("Advance Network Setting is to set up Private Network and Security Group for additional instances. If you don't want it, you can press Next button to go to the next step.")
-                cy.wait(700);
+            cy.contains('Create Cloud Server').click();
+            cy.get('[href="/cloud-server/instance"]').first().click({ force: true });
+            cy.get('[href="/cloud-server/new"]').click();
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.contains('Advance Network Setting').trigger('mouseover');
+            cy.wait(200)
+            cy.get('.ant-tooltip-inner').contains("Advance Network Setting is to set up Private Network and Security Group for additional instances. If you don't want it, you can press Next button to go to the next step.")
+            cy.wait(700);
 
-            })
+        })
 
 
     })
@@ -139,7 +138,6 @@ describe('Create Cloud Normal Flow', () => {
         it('Usilibities (The system display alert note “Password จะถูกส่งไปที่ Email ของคุณหลังจากการสร้าง Cloud สำเร็จ: Link Email ””)', () => {
 
             cy.contains('Create Cloud Server').click();
-            
             cy.wait(500);
             cy.get('[type="submit"]').click();
             cy.wait(500);
@@ -159,7 +157,6 @@ describe('Create Cloud Normal Flow', () => {
         it('Usibirities ( The system displayed field labels )', () => {
 
             cy.contains('Create Cloud Server').click();
-            
             cy.wait(500);
             cy.get('[type="submit"]').click();
             cy.wait(500);
@@ -175,80 +172,80 @@ describe('Create Cloud Normal Flow', () => {
 
         })
 
-            it('Validation (User did not specify Hostname. The system display alert message “Please input data”)', () => {
+        it('Validation (User did not specify Hostname. The system display alert message “Please input data”)', () => {
 
-                cy.contains('Create Cloud Server').click();
-                cy.get('[href="/cloud-server/instance"]').first().click({ force: true });
-                cy.get('[href="/cloud-server/new"]').click();
-                cy.wait(500);
-                cy.get('[type="submit"]').click();
-                cy.wait(500);
-                cy.get('[type="submit"]').click();
-                cy.wait(500);
-                cy.get('[type="submit"]').click();
-                cy.wait(500);
-                cy.get('[type="submit"]').click();
-                cy.get('[name="hostname"]').clear();
-                cy.get('[type="submit"]').click();
-                cy.get('.text-danger').contains('Please input data');
+            cy.contains('Create Cloud Server').click();
+            cy.get('[href="/cloud-server/instance"]').first().click({ force: true });
+            cy.get('[href="/cloud-server/new"]').click();
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.get('[name="hostname"]').clear();
+            cy.get('[type="submit"]').click();
+            cy.get('.text-danger').contains('Please input data');
 
-            })
+        })
 
-            it('Usibirities (User specify Display name (Optional). The card changes according to the Display name.)', () => {
+        it('Usibirities (User specify Display name (Optional). The card changes according to the Display name.)', () => {
 
-                cy.contains('Create Cloud Server').click();
-                cy.get('[href="/cloud-server/instance"]').first().click({ force: true });
-                cy.get('[href="/cloud-server/new"]').click();
-                cy.wait(500);
-                cy.get('[type="submit"]').click();
-                cy.wait(500);
-                cy.get('[type="submit"]').click();
-                cy.wait(500);
-                cy.get('[type="submit"]').click();
-                cy.wait(500);
-                cy.get('[type="submit"]').click();
-                cy.get('[name="displayName"]').type('test');
-                cy.get('.instance').contains('test');
+            cy.contains('Create Cloud Server').click();
+            cy.get('[href="/cloud-server/instance"]').first().click({ force: true });
+            cy.get('[href="/cloud-server/new"]').click();
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.get('[name="displayName"]').type('test');
+            cy.get('.instance').contains('test');
 
-            })
+        })
 
-            it('Usibirities (User specify จำนวนเครื่องที่ต้องการสร้าง 1 เครื่อง. The card add according to the จำนวนเครื่องที่ต้องการสร้าง.)', () => {
+        it('Usibirities (User specify จำนวนเครื่องที่ต้องการสร้าง 1 เครื่อง. The card add according to the จำนวนเครื่องที่ต้องการสร้าง.)', () => {
 
-                cy.contains('Create Cloud Server').click();
-                cy.get('[href="/cloud-server/instance"]').first().click({ force: true });
-                cy.get('[href="/cloud-server/new"]').click();
-                cy.wait(500);
-                cy.get('[type="submit"]').click();
-                cy.wait(500);
-                cy.get('[type="submit"]').click();
-                cy.wait(500);
-                cy.get('[type="submit"]').click();
-                cy.wait(500);
-                cy.get('[type="submit"]').click();
-                cy.get('#instanceAmount').clear().type('1')
-                cy.get('.instance').should('be.visible');
-
-
-            })
-
-            it('Usibirities (User specify จำนวนเครื่องที่ต้องการสร้าง 1 เครื่อง. The card add according to the จำนวนเครื่องที่ต้องการสร้าง.)', () => {
-
-                cy.contains('Create Cloud Server').click();
-                cy.get('[href="/cloud-server/instance"]').first().click({ force: true });
-                cy.get('[href="/cloud-server/new"]').click();
-                cy.wait(500);
-                cy.get('[type="submit"]').click();
-                cy.wait(500);
-                cy.get('[type="submit"]').click();
-                cy.wait(500);
-                cy.get('[type="submit"]').click();
-                cy.wait(500);
-                cy.get('[type="submit"]').click();
-                cy.get('#instanceAmount').clear().type('5')
-                cy.get('.instance').should('be.visible');
+            cy.contains('Create Cloud Server').click();
+            cy.get('[href="/cloud-server/instance"]').first().click({ force: true });
+            cy.get('[href="/cloud-server/new"]').click();
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.get('#instanceAmount').clear().type('1')
+            cy.get('.instance').should('be.visible');
 
 
-            })
+        })
+
+        it('Usibirities (User specify จำนวนเครื่องที่ต้องการสร้าง 1 เครื่อง. The card add according to the จำนวนเครื่องที่ต้องการสร้าง.)', () => {
+
+            cy.contains('Create Cloud Server').click();
+            cy.get('[href="/cloud-server/instance"]').first().click({ force: true });
+            cy.get('[href="/cloud-server/new"]').click();
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.wait(500);
+            cy.get('[type="submit"]').click();
+            cy.get('#instanceAmount').clear().type('5')
+            cy.get('.instance').should('be.visible');
+
+
+        })
 
     })
 
@@ -256,7 +253,6 @@ describe('Create Cloud Normal Flow', () => {
         it('Validation (User click Create without clicking checkbox. The system display alert “Please accept the terms and conditions of service.”.', () => {
 
             cy.contains('Create Cloud Server').click();
-            
             cy.wait(500);
             cy.get('[type="submit"]').click();
             cy.wait(500);
@@ -277,7 +273,6 @@ describe('Create Cloud Normal Flow', () => {
         it('Validation (User click Create without clicking checkbox. The system display alert “กรุณายอมรับข้อกำหนดและเงื่อนไขการใช้บริการ”.', () => {
 
             cy.contains('Create Cloud Server').click();
-            
             cy.wait(500);
             cy.get('[type="submit"]').click();
             cy.wait(500);
@@ -291,7 +286,7 @@ describe('Create Cloud Normal Flow', () => {
             cy.wait(500);
             cy.get('#terms').check();
             cy.get('[type="submit"]').click();
-            cy.get('.callout').contains('การสร้าง Cloud คุณจะต้องมี Credit ที่สามารถใช้ได้ เพียงพอต่อการใช้งาน Instance ตั้งแต่ 7 วันจึงสามารถดำเนินการได้ กรุณาเติมเงินโดยคุณต้องเติมเงินมากกว่า 525.00 บาท');
+            cy.get('.callout').contains('To create you must have available credit—enough for 1 hour of use to be able to build. Please top up. You must top up more than 775.00 baht.');
             cy.wait(700);
 
         })
@@ -299,7 +294,6 @@ describe('Create Cloud Normal Flow', () => {
         it('Usibirities (User click Top Up button. The system open new tab leads to Top Up page.', () => {
 
             cy.contains('Create Cloud Server').click();
-            
             cy.wait(500);
             cy.get('[type="submit"]').click();
             cy.wait(500);
