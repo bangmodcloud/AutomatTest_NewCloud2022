@@ -5,26 +5,47 @@ describe('Allocate Floating IP', () => {
         })
         cy.login()
         cy.wait(2000)
-        // cy.get('.app_renderer_nt_consent_term-and-condition-modal__scroll-to-bottom-style > .d-flex > .btn').click();
-        // cy.get('.mx-3 > :nth-child(2) > .d-flex > .btn').click();
+    
+    })
+
+    it('Usibirities (User go to Allocate Floating IP page. The system displayed Field labels as follows: ">> Test Plan"', () => {
+
+        cy.get('#network-collapse').first().click({ force: true });
+        cy.get('[href="/cloud-server/floating-ip"]').first().click({ force: true });
+        cy.get('[href="/cloud-server/floating-ip/new"]').click();
+        // Allocate Floating IP card
+        cy.contains('label', 'Number of IPs required').should('have.text', 'Number of IPs required')
+        cy.contains('label', 'Description (Optional)').should('have.text', 'Description (Optional)')
+
+        cy.get('.form-side').scrollTo(0, 500)
+
+        // Floating IP User Agreement
+        cy.contains('.card', 'Floating IP User Agreement')
+            .contains('li', 'Expenses for using the Floating IP service are subject to the following terms and conditions:')
+            .contains('li', 'If Floating IP is allocated but not yet used (Association) The price will be charged higher than the Floating IP that is deployed.')
+        cy.contains('.card', 'Floating IP User Agreement').contains('li', 'The system will automatically update credit and balance every end of the month. The balance will be deducted from credit first. . In case the number of Credits is insufficient, the system will automatically use the Balance.')
+        cy.contains('.card', 'Floating IP User Agreement').contains('li', 'Floating IP forced by the system stopped working. will be charged as usual');
+
+        cy.get('[for="terms"').should('have.text', 'I have read and understood this Agreement.')
+            
+        
+        cy.wait(700);
     })
 
 
     it('Action success', () => {
 
-        cy.get('#cloud-collapse').click({ force: true });
         cy.get('#network-collapse').first().click({ force: true });
         cy.get('[href="/cloud-server/floating-ip"]').first().click({ force: true });
         cy.get('[href="/cloud-server/floating-ip/new"]').click();
-        cy.get(':nth-child(4) > .form-control').type('Test Allocate Floating IP');//Description (Optional)
+        cy.get('[type="text"]').type('Test Allocate Floating IP');//Description (Optional)
         cy.get('#terms').check();
         cy.get('[type="submit"]').click();
         cy.wait(3000);
     })
 
-    it(' validation (Allocate Floating IP Exceeded Limit. The system display alert “ไม่สามารถ Allocate Floating IP ได้อีก เพราะคุณได้ Allocate Floating IP ครบจำนวนแล้ว”)', () => {
+    it(' validation (Allocate Floating IP Exceeded Limit. The system display alert “ไUnable to allocate floating IP again because you have reached the allocate floating IP limit.”)', () => {
 
-        cy.get('#cloud-collapse').click({ force: true });
         cy.get('#network-collapse').first().click({ force: true });
         cy.get('[href="/cloud-server/floating-ip"]').first().click({ force: true });
         cy.get('[href="/cloud-server/floating-ip/new"]').click();
@@ -32,41 +53,38 @@ describe('Allocate Floating IP', () => {
         cy.get('[placeholder="Enter Description"]').type('Test Allocate Floating IP');//Description (Optional)
         cy.get('#terms').check();
         cy.get('[type="submit"]').click();
-        cy.get('.callout').contains('ไม่สามารถ Allocate Floating IP ได้อีก เพราะคุณได้ Allocate Floating IP ครบจำนวนแล้ว');
+        cy.get('.callout').contains('Unable to allocate floating IP again because you have reached the allocate floating IP limit.');
         cy.wait(700);
     })
 
-    it(' validation (User click Create without clicking checkbox. The system display alert "กรุณายอมรับข้อกำหนดและเงื่อนไขการใช้บริการ”)', () => {
+    it(' validation (User click Create without clicking checkbox. The system display alert "Please accept the terms and conditions of service.”)', () => {
 
-        cy.get('#cloud-collapse').click({ force: true });
         cy.get('#network-collapse').first().click({ force: true });
         cy.get('[href="/cloud-server/floating-ip"]').first().click({ force: true });
         cy.get('[href="/cloud-server/floating-ip/new"]').click();
         cy.get('[type="submit"]').click();
-        cy.get('.callout').contains('กรุณายอมรับข้อกำหนดและเงื่อนไขการใช้บริการ');
+        cy.get('.callout').contains('Please accept the terms and conditions of service.');
         cy.wait(700);
     })
 
-    it(' validation (User does not have enough credits. The system display alert “การสร้าง Cloud คุณจะต้องมี Credit ที่สามารถใช้ได้ เพียงพอต่อการใช้งาน Instance ตั้งแต่ 7 วันจึงสามารถดำเนินการได้ กรุณาเติมเงินโดยคุณต้องเติมเงินมากกว่า 0000.00 บาท “)', () => {
+    it(' validation (User does not have enough credits. The system display alert “To create you must have available credit—enough for 1 hour of use to be able to build. Please top up. You must top up more than 775.00 baht.“)', () => {
 
-        cy.get('#cloud-collapse').click({ force: true });
         cy.get('#network-collapse').first().click({ force: true });
         cy.get('[href="/cloud-server/floating-ip"]').first().click({ force: true });
         cy.get('[href="/cloud-server/floating-ip/new"]').click();
         cy.get('#terms').check();
         cy.get('[type="submit"]').click();
-        cy.get('.callout').contains('การสร้าง Cloud คุณจะต้องมี Credit ที่สามารถใช้ได้ เพียงพอต่อการใช้งาน Instance ตั้งแต่ 7 วันจึงสามารถดำเนินการได้ กรุณาเติมเงินโดยคุณต้องเติมเงินมากกว่า 0000.00 บาท ');
+        cy.get('.callout').contains('To create you must have available credit—enough for 1 hour of use to be able to build. Please top up. You must top up more than 775.00 baht. ');
         cy.wait(700);
     })
 
-    it(' validation ( User click เติมเงิน button. The system open new tab leads to PAYMENT CONFIRMATION page.)', () => {
+    it(' validation ( User click Top Up button. The system open new tab leads to Top Up page.)', () => {
 
-        cy.get('#cloud-collapse').click({ force: true });
         cy.get('#network-collapse').first().click({ force: true });
         cy.get('[href="/cloud-server/floating-ip"]').first().click({ force: true });
         cy.get('[href="/cloud-server/floating-ip/new"]').click();
         cy.wait(300);
-        cy.get('[href="/billing/confirm-payment"]').invoke('removeAttr','target').first().click({force: true});
+        cy.contains('Top Up').invoke('removeAttr','target').first().click({force: true});
         cy.wait(700);
     })
 })
