@@ -4,18 +4,32 @@ describe('Create Router', () => {
             return false
         })
         cy.login()
-        cy.wait(3000)
-        // cy.get('.app_renderer_nt_consent_term-and-condition-modal__scroll-to-bottom-style > .d-flex > .btn').click();
-        // cy.get('.mx-3 > :nth-child(2) > .d-flex > .btn').click();
+        cy.wait(1000)
+
+    })
+
+    it('Usabilities (User click Add button icon. The system open new tap leads to Create Floating IP page.)', () => {
+
+        cy.get('#network-collapse').first().click({ force: true });
+        cy.get('[href="/cloud-server/router"]').first().click({ force: true });
+        cy.get('[href="/cloud-server/router/new"]').click();
+
+        // General Information card
+        cy.contains('label', 'Name').should('have.text', 'Name')
+        cy.contains('label', 'Description (Optional)').should('have.text', 'Description (Optional)')
+
+        cy.get('#isUseExternalNetwork').check();
+        cy.contains('.card','Setting SNAT').contains('div','Source Network Address Translation (source-nat or SNAT) allows traffic from a private network to go out to the internet. Virtual machines launched on a private network can get to the internet by going through a gateway capable of performing SNAT.')
+        cy.wait(700);
+
     })
 
     it('Action success', () => {
 
-        cy.get('#cloud-collapse').click({ force: true });
         cy.get('#network-collapse').first().click({ force: true });
         cy.get('[href="/cloud-server/router"]').first().click({ force: true });
         cy.get('[href="/cloud-server/router/new"]').click();
-        cy.get('#name').type('test-Router');
+        cy.get('#name').clear().type('test-Router');
         cy.get('#description').type('Automate test router');
         cy.get('[type="submit"]').click();
         cy.wait(700);
@@ -25,10 +39,10 @@ describe('Create Router', () => {
 
     it('Validation (User did not specify Name.  The system display alert message “Please input data”)', () => {
 
-        cy.get('#cloud-collapse').click({ force: true });
         cy.get('#network-collapse').first().click({ force: true });
         cy.get('[href="/cloud-server/router"]').first().click({ force: true });
         cy.get('[href="/cloud-server/router/new"]').click();
+        cy.get('#name').clear();
         cy.get('#description').type('Automate test router');
         cy.get('[type="submit"]').click();
         cy.get('.text-danger').contains('Please input data');
@@ -39,7 +53,6 @@ describe('Create Router', () => {
 
     it('Usabilities (User hovers over the warning icon.  The system display tooltip “Selecting External Network is selecting Public IP to be the Outgoing IP.  Public IP here will be taken from Service Floating IP.”)', () => {
 
-        cy.get('#cloud-collapse').click({ force: true });
         cy.get('#network-collapse').first().click({ force: true });
         cy.get('[href="/cloud-server/router"]').first().click({ force: true });
         cy.get('[href="/cloud-server/router/new"]').click();
@@ -57,21 +70,19 @@ describe('Create Router', () => {
 
     it('Usabilities (User Check Select External Network Checkbox.  The system display Select External Network card.)', () => {
 
-        cy.get('#cloud-collapse').click({ force: true });
         cy.get('#network-collapse').first().click({ force: true });
         cy.get('[href="/cloud-server/router"]').first().click({ force: true });
         cy.get('[href="/cloud-server/router/new"]').click();
         cy.get('#name').type('test-Router');
         cy.get('#description').type('Automate test router');
         cy.get('#isUseExternalNetwork').check();
-        cy.get('.col-md-8 > :nth-child(2) > :nth-child(1) > .card').should('be.visible');
+        cy.contains('.card','Setting SNAT').should('be.visible');
         cy.wait(700);
 
     })
 
     it('Usabilities (User searches for External Network entry by External Network IP Address / Description.  The system displays the searched list.)', () => {
 
-        cy.get('#cloud-collapse').click({ force: true });
         cy.get('#network-collapse').first().click({ force: true });
         cy.get('[href="/cloud-server/router"]').first().click({ force: true });
         cy.get('[href="/cloud-server/router/new"]').click();
@@ -87,29 +98,26 @@ describe('Create Router', () => {
 
     it('Usabilities (User click Add button icon. The system open new tap leads to Create Floating IP page.)', () => {
 
-        cy.get('#cloud-collapse').click({ force: true });
         cy.get('#network-collapse').first().click({ force: true });
         cy.get('[href="/cloud-server/router"]').first().click({ force: true });
         cy.get('[href="/cloud-server/router/new"]').click();
         cy.get('#name').type('test-Router');
         cy.get('#description').type('Automate test router');
         cy.get('#isUseExternalNetwork').check();
-        cy.get('[href="/cloud-server/floating-ip/new"]').invoke('removeAttr','target').click();
+        cy.get('[href="/cloud-server/floating-ip/new"]').invoke('removeAttr', 'target').click();
         cy.wait(700);
 
     })
 
     it('Usabilities (User Check Select External Network Checkbox. Setting SNAT Toggle Default = Enable)', () => {
 
-        cy.get('#cloud-collapse').click({ force: true });
         cy.get('#network-collapse').first().click({ force: true });
         cy.get('[href="/cloud-server/router"]').first().click({ force: true });
         cy.get('[href="/cloud-server/router/new"]').click();
-        cy.get('#name').type('test-Router');
+        cy.get('#name').clear().type('test-Router');
         cy.get('#description').type('Automate test router');
         cy.get('#isUseExternalNetwork').check();
-        cy.get('.ant-switch-checked').should('be.enabled');
-        cy.get('.app_renderer_lib_style__toggle > .ml-2').contains('Enable')
+        cy.get('.ant-switch-checked').should('be.enabled').find('span','Enable');
         cy.wait(700);
 
     })
