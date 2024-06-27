@@ -12,7 +12,7 @@ describe('Request Change Personal Information', () => {
         cy.get('[id="dropdown-profile "]').click({ force: true });
         cy.get('#user-menu').click({ force: true });
         cy.wait(300);
-        cy.get(':nth-child(1) > .card > .justify-content-between > .app_renderer_nt_lib_button__nt-button-style > .btn').click();
+        cy.contains('.card', 'Personal Information').contains('Request Change').click();
         cy.get('.modal-content')
             .should('be.visible')
             .and('contain', 'Confirm request change personal information?')
@@ -30,7 +30,7 @@ describe('Request Change Personal Information', () => {
         cy.get('[id="dropdown-profile "]').click({ force: true });
         cy.get('#user-menu').click({ force: true });
         cy.wait(300);
-        cy.get(':nth-child(1) > .card > .justify-content-between > .app_renderer_nt_lib_button__nt-button-style > .btn').click();
+        cy.contains('.card', 'Personal Information').contains('Request Change').click();
         cy.get('.modal-content')
             .should('be.visible')
             .and('contain', 'Confirm request change personal information?')
@@ -48,7 +48,7 @@ describe('Request Change Personal Information', () => {
         cy.get('[id="dropdown-profile "]').click({ force: true });
         cy.get('#user-menu').click({ force: true });
         cy.wait(300);
-        cy.get(':nth-child(1) > .card > .justify-content-between > .app_renderer_nt_lib_button__nt-button-style > .btn').click();
+        cy.contains('.card', 'Personal Information').contains('Request Change').click();
         cy.get('.modal-content')
             .should('be.visible')
             .and('contain', 'Confirm request change personal information?')
@@ -70,7 +70,7 @@ describe('Request Change Personal Information', () => {
         cy.get('[id="dropdown-profile "]').click({ force: true });
         cy.get('#user-menu').click({ force: true });
         cy.wait(300);
-        cy.get(':nth-child(1) > .card > .justify-content-between > .app_renderer_nt_lib_button__nt-button-style > .btn').click();
+        cy.contains('.card', 'Personal Information').contains('Request Change').click();
         cy.get('.modal-content')
             .should('be.visible')
             .and('contain', 'Confirm request change personal information?')
@@ -93,7 +93,7 @@ describe('Request Change Personal Information', () => {
         cy.get('[id="dropdown-profile "]').click({ force: true });
         cy.get('#user-menu').click({ force: true });
         cy.wait(300);
-        cy.get(':nth-child(1) > .card > .justify-content-between > .app_renderer_nt_lib_button__nt-button-style > .btn').click();
+        cy.contains('.card', 'Personal Information').contains('Request Change').click();
         cy.get('.modal-content')
             .should('be.visible')
             .and('contain', 'Confirm request change personal information?')
@@ -116,7 +116,7 @@ describe('Request Change Personal Information', () => {
         cy.get('[id="dropdown-profile "]').click({ force: true });
         cy.get('#user-menu').click({ force: true });
         cy.wait(300);
-        cy.get(':nth-child(1) > .card > .justify-content-between > .app_renderer_nt_lib_button__nt-button-style > .btn').click();
+        cy.contains('.card', 'Personal Information').contains('Request Change').click();
         cy.get('.modal-content')
             .should('be.visible')
             .and('contain', 'Confirm request change personal information?')
@@ -132,6 +132,42 @@ describe('Request Change Personal Information', () => {
 
 
     })
+
+    it('Usabirities (User go to Request change personal information page.Then : The system displayed Field labels as follows:>>"View Test Plan")', () => {
+
+        cy.contains('label', 'คุณเป็นคนสัญชาติไทยใช่หรือไม่? / Thai Nationality ? ').should('have.text', 'คุณเป็นคนสัญชาติไทยใช่หรือไม่? / Thai Nationality ? ');
+        cy.contains('label', 'Yes').should('have.text', 'ใช่ / Yes');
+        cy.contains('label', 'No').should('have.text', 'ไม่ / No');
+        cy.get('[for="firstname"]').should('have.text', 'ชื่อ (กรุณาระบุข้อมูลเป็นภาษาไทย)');
+        cy.get('[for="lastname"]').should('have.text', 'นามสกุล (กรุณาระบุข้อมูลเป็นภาษาไทย)');
+        cy.get('[for="national-id"]').should('have.text', 'หมายเลขบัตรประจำตัวประชาชน');
+        cy.contains('label', 'วันเกิด').should('have.text', 'วันเกิด');
+        cy.contains('label', 'ประเทศ').should('have.text', 'ประเทศ');
+        cy.contains('label', 'รหัสไปรษณีย์').should('have.text', 'รหัสไปรษณีย์');
+        cy.contains('label', 'จังหวัด').should('have.text', 'จังหวัด');
+        cy.contains('label', 'เขต/อำเภอ').should('have.text', 'เขต/อำเภอ');
+        cy.contains('label', 'แขวง/ตำบล').should('have.text', 'แขวง/ตำบล');
+        cy.contains('label', 'ที่อยู่').should('have.text', 'ที่อยู่');
+        cy.wait(700);
+
+    })
+
+    it('Usabirities (User click “ไม่” radio : The system displayed Field labels as follows: >>"View Test Plan")', () => {
+
+        cy.get('#no').check();
+        cy.contains('label', 'คุณเป็นคนสัญชาติไทยใช่หรือไม่? / Thai Nationality ? ').should('have.text', 'คุณเป็นคนสัญชาติไทยใช่หรือไม่? / Thai Nationality ? ');
+        cy.contains('label', 'Yes').should('have.text', 'ใช่ / Yes');
+        cy.contains('label', 'No').should('have.text', 'ไม่ / No');
+        cy.get('[for="firstname"]').should('have.text', 'First Name');
+        cy.get('[for="lastname"]').should('have.text', 'Last Name');
+        cy.get('[for="national-id"]').should('have.text', 'Passport Number');
+        cy.contains('label', 'Date of birth').should('have.text', 'Date of birth');
+        cy.contains('label', 'Place Of Birth').should('have.text', 'Place Of Birth');
+        cy.wait(700);
+        
+
+    })
+
 
     it('Validation (User does not enter Text field. The system display alert message “Please Input Data”.', () => {
 
@@ -169,17 +205,6 @@ describe('Request Change Personal Information', () => {
 
     })
 
-    it('Usabilities (User click hyperlink Example. The system Openlink new tab display sample of documents used to verify identity. which will use only the front ID card', () => {
-
-        cy.wait(700);
-        cy.get(':nth-child(1) > .content-16-reg > .ml-2').click(); //hyperlink Example1.
-        cy.wait(300);
-        cy.get('.mt-4 > .content-16-reg > .ml-2').click(); //hyperlink Example2.
-
-        cy.wait(700);
-
-
-    })
 
     it('Usabilities (User change image ID card and image verify identity and click submit. The system displays the Wait for staff approved page.', () => {
 
@@ -188,7 +213,7 @@ describe('Request Change Personal Information', () => {
         cy.get('[for="selfieWithIdentifierImage"]').selectFile('cypress/fixtures/verify.jpg');
         cy.get('[type="submit"]').click();
         cy.wait(300);
-       
+
 
         cy.wait(700);
 
