@@ -312,4 +312,32 @@ describe('Create Cloud Normal Flow', () => {
 
     })
 
+    context('Managr Your Cloud page.', () => {
+
+        it('Usibirities ( The system displayed field labels : \
+            Instance Information card : ID,Hostname,Display Name,OS,Version,Ram (GB),CPU (Core),Login with User,Authentication Method,Create Date\
+            Network Information card : Public IPv4 Address\
+            Security Group card : Security Group )', () => {
+
+            cy.get('.underline-link').click();
+
+            cy.wait(500);
+            cy.contains('label', 'ID').should('have.text', 'ID')
+            cy.contains('label', 'Hostname').should('have.text', 'Hostname')
+            cy.contains('label', 'Display Name').should('have.text', 'Display Name')
+            cy.contains('label', 'OS').should('have.text', 'OS')
+            cy.contains('label', 'Version').should('have.text', 'Version')
+            cy.contains('label', 'Ram (GB)').should('have.text', 'Ram (GB)')
+            cy.contains('label', 'CPU (Core)').should('have.text', 'CPU (Core)')
+            cy.contains('label', 'Login with User').should('have.text', 'Login with User')
+            cy.contains('label', 'Authentication Method').should('have.text', 'Authentication Method')
+            cy.contains('label', 'Create Date').should('have.text', 'Create Date')
+            cy.contains('label', 'Public IPv4 Address').should('have.text', 'Public IPv4 Address')
+            cy.contains('label', 'Security Group').should('have.text', 'Security Group')
+            cy.wait(700);
+
+        })
+
+})
+
 })
