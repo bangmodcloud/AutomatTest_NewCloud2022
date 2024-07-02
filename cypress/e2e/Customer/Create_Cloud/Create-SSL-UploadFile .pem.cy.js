@@ -7,6 +7,26 @@ describe('Create-SSL-UploadFile .pem', () => {
 
     })
 
+    it('Usabirities (User select File .pem radio.The system displayed Field labels as follows:\
+        Upload Certificate card : Upload File Certificate, Attach Files : .pem, .cer and .crt only\
+        Upload File Private Key, Attach Files : .pem and .key only', () => {
+
+        cy.get('#load-balance-collapse').first().click({ force: true });
+        cy.get('#ssl-certificate').click();
+        cy.get('[href="/cloud-server/ssl/new"]').click(); //Create SSL
+        cy.get('#pemfile').click();
+
+        cy.contains('.card', 'Upload Certificate').within(() => {
+            cy.contains('span', 'Upload File Certificate').should('include.text', 'Upload File Certificate');
+            cy.contains('span', 'Attach Files : .pem, .cer and .crt only').should('include.text', 'Attach Files : .pem, .cer and .crt only');
+            cy.contains('div', 'Upload File Private Key').should('include.text', 'Upload File Private Key');
+            cy.contains('span', 'Attach Files : .pem and .key only').should('include.text', 'Attach Files : .pem and .key only');
+        })
+        cy.wait(700);
+
+
+    })
+
     it('Action success', () => {
 
         cy.get('#load-balance-collapse').first().click({ force: true });
