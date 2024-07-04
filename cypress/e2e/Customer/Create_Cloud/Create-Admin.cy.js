@@ -8,7 +8,20 @@ describe('Create Admin', () => {
 
     })
 
+    it('Usibirities ( The system displayed field labels : Email, Password, First Name, Last Name, Phone Number, Role)', () => {
 
+        cy.get('#all-staff').click();
+        cy.contains('Create Admin').click();
+
+        cy.contains('label', 'Email').should('have.text', 'Email');
+        cy.contains('label', 'Password').should('have.text', 'Password');
+        cy.contains('label', 'First Name').should('have.text', 'First Name');
+        cy.contains('label', 'Last Name').should('have.text', 'Last Name');
+        cy.contains('label', 'Phone Number').should('have.text', 'Phone Number');
+        cy.contains('label', 'Role').should('have.text', 'Role');
+        cy.wait(700);
+
+    })
 
     it('Validation (User does not enter Text field. The system display alert message “Please Input Data”.', () => {
 
