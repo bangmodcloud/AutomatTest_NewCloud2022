@@ -7,6 +7,31 @@ describe('Create Issues Type', () => {
 
     })
 
+    it('Usibirities (User click Edit button. The system displayed Field labels as follows:\
+        Department, Priority, Issue Type, Published)', () => {
+
+        cy.get('#ticket').click();
+        cy.get('[href="/nt/ticket/new"]').click();
+
+        cy.contains('label', 'Department').should('have.text', 'Department')
+        cy.contains('label', 'Priority').should('have.text', 'Priority')
+        cy.contains('label', 'Issue Type').should('have.text', 'Issue Type')
+        cy.contains('label', 'Published').should('have.text', 'Published')
+        cy.wait(700);
+
+    })
+
+    it('Validation (Admin does not enter selectfield..  The system display alert messsage “ Please select data” )', () => {
+
+        cy.get('#ticket').click();
+        cy.get('[href="/nt/ticket/new"]').click();
+        cy.get('#issue').type('Refunded');
+        cy.get('[type="submit"]').click();
+        cy.get('.text-danger').contains('Please select data');
+        cy.wait(700);
+
+    })
+
     it('Validation (Admin does not enter selectfield..  The system display alert messsage “ Please select data” )', () => {
 
         cy.get('#ticket').click();
@@ -44,7 +69,7 @@ describe('Create Issues Type', () => {
     })
 
     it('Action success', () => {
-    
+
 
         cy.get('#ticket').click();
         cy.get('[href="/nt/ticket/new"]').click();

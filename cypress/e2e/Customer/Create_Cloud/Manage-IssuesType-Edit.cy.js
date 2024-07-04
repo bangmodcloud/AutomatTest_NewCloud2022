@@ -7,6 +7,20 @@ describe('Manage Issues Type / Edit Issue type information', () => {
 
     })
 
+    it('Usibirities (User click Edit button. The system displayed Field labels as follows:\
+        Department, Priority, Issue Type, Published)', () => {
+
+        cy.get('#ticket').click();
+        cy.get('.underline-link').frist().click();
+
+        cy.contains('label', 'No.').should('have.text', 'No.')
+        cy.contains('label', 'Department').should('have.text', 'Department')
+        cy.contains('label', 'Priority').should('have.text', 'Priority')
+        cy.contains('label', 'Issue Type').should('have.text', 'Issue Type')
+        cy.wait(700);
+
+    })
+
     it('Validation (Admin does not enter selectfield.  The system display alert messsage “ Please select data” )', () => {
 
         cy.get('#ticket').click();
