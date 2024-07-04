@@ -7,6 +7,23 @@ describe('Create News', () => {
 
     })
 
+    it('Usibirities (The system displayed Field labels as follows:\
+        Title, Description, Image (Optional), Attach files : only png, jpg, jpeg, Additional Link (Optional), Published)', () => {
+
+        cy.get('#news').click();
+        cy.contains('Create News').click()
+
+        cy.contains('label', 'Title').should('have.text', 'Title')
+        cy.contains('label', 'Description').should('have.text', 'Description')
+        cy.contains('div', 'Image (Optional)').should('have.text', 'Image (Optional)')
+        cy.contains('div', 'Attached files : only png, jpg, jpeg').should('have.text', 'Attached files : only png, jpg, jpeg')
+        cy.contains('label', 'Additional Link (Optional)').should('have.text', 'Additional Link (Optional)')
+        cy.contains('div', 'Published').should('have.text', 'Published')
+        cy.wait(300);
+
+
+    })
+
     it('Action success', () => {
 
         cy.get('#news').click();
