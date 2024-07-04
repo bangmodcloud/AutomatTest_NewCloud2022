@@ -7,6 +7,37 @@ describe('Manage News / Edit News', () => {
 
     })
 
+    it('Usibirities (The system displayed Field labels as follows: ID, Title, Description, jpeg, Additional Link)', () => {
+
+        cy.get('#news').click();
+        cy.get('.underline-link').first().click();
+
+        cy.contains('label', 'ID').should('have.text', 'ID')
+        cy.contains('label', 'Title').should('have.text', 'Title')
+        cy.contains('label', 'Description').should('have.text', 'Description')
+        cy.contains('label', 'Additional Page Link').should('have.text', 'Additional Page Link')
+        cy.wait(300);
+
+
+    })
+
+    it('Usibirities (User click Edit button. The system displayed Field labels as follows: ID\
+        Title, Description, Image (Optional), Attach files : only png, jpg, jpeg, Additional Link)', () => {
+
+        cy.get('#news').click();
+        cy.get('.underline-link').first().click();
+        cy.contains('Edit').click();
+        cy.contains('label', 'ID').should('have.text', 'ID')
+        cy.contains('label', 'Title').should('have.text', 'Title')
+        cy.contains('label', 'Description').should('have.text', 'Description')
+        cy.contains('div', 'Image (Optional)').should('have.text', 'Image (Optional)')
+        cy.contains('label', 'Additional Page Link').should('have.text', 'Additional Page Link')
+        cy.contains('div', 'Attached files : only png, jpg, jpeg').should('have.text', 'Attached files : only png, jpg, jpeg')
+        cy.wait(300);
+
+
+    })
+
     it('Action success', () => {
 
         cy.get('#news').click();
