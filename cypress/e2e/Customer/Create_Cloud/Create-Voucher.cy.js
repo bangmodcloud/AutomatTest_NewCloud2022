@@ -8,6 +8,20 @@ describe('Create Voucher code', () => {
 
     })
 
+    it('Usabilities (The system displayed Field labels as follows: Subject, Detail, Document Date,\
+        Start Date, Expired Date, Quantity, Value Credit)', () => {
+
+        cy.get('#voucher-code').click();
+        cy.get('[href="/nt/voucher/new"]').click();
+        cy.contains('label', 'Subject').should('have.text', 'Subject');
+        cy.contains('label', 'Detail').should('have.text', 'Detail');
+        cy.contains('label', 'Document Date').should('include.text', 'Document Date');
+        cy.contains('label', 'Start Date').should('include.text', 'Start Date');
+        cy.contains('label', 'Expired Date').should('include.text', 'Expired Date');
+        cy.contains('label', 'Quantity').should('include.text', 'Quantity');
+        cy.contains('label', 'Value Credit').should('include.text', 'Value Credit');
+
+    })
 
     it('Validation (Admin does not enter Textfield.  The system display alert messsage “ Please input data” )', () => {
 
@@ -19,7 +33,7 @@ describe('Create Voucher code', () => {
 
     })
 
-        it('Usabilities (Admin click Cancel button. The system leads to Voucher code page.)', () => {
+    it('Usabilities (Admin click Cancel button. The system leads to Voucher code page.)', () => {
 
         cy.get('#voucher-code').click();
         cy.get('[href="/nt/voucher/new"]').click();
