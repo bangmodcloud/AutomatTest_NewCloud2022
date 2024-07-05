@@ -7,12 +7,51 @@ describe('Manage Backup Profile', () => {
 
     })  
 
+    it('Usibirities (The system displayed field labels :Name, Description,\
+        Cron Job Pattern (Cron job will be apply time UTC),Retention.', () => {
+
+        cy.get('#volume-collapse').click();
+        cy.get('#system-backup-profile').click();
+        cy.get('.underline-link').first().click();
+        cy.wait(700);
+
+        cy.contains('label', 'ID').should('have.text', 'ID')
+        cy.contains('label', 'Name').should('have.text', 'Name')
+        cy.contains('label', 'Description').should('have.text', 'Description')
+        cy.contains('label', 'Cron Job Pattern (Cron job will be apply time UTC)').should('have.text', 'Cron Job Pattern (Cron job will be apply time UTC)')
+        cy.contains('label', 'Retention').should('have.text', 'Retention')
+ 
+
+        cy.wait(700);
+
+    })
+
+    it('Usibirities (Admin click Edit. The system displayed field labels :Name, Description (Optional)\
+        Cron Job Pattern (Cron job will be apply time UTC),Retention.', () => {
+
+        cy.get('#volume-collapse').click();
+        cy.get('#system-backup-profile').click();
+        cy.get('.underline-link').first().click();
+        cy.wait(700);
+        cy.contains('Edit').click();
+
+        cy.contains('label', 'Name').should('have.text', 'Name')
+        cy.contains('label', 'Description (Optional)').should('have.text', 'Description (Optional)')
+        cy.contains('label', 'Cron Job Pattern (Cron job will be apply time UTC)').should('have.text', 'Cron Job Pattern (Cron job will be apply time UTC)')
+        cy.contains('label', 'Retention').should('have.text', 'Retention')
+ 
+
+        cy.wait(700);
+
+    })
+
     it('Validation (User does not enter Text field. The system display alert message “Please Input Data”.', () => {
       
         cy.get('#volume-collapse').click();
         cy.get('#system-backup-profile').click();
-        cy.get(':nth-child(1) > :nth-child(3) > .underline-link').click();
-        cy.get('.d-flex > .app_renderer_common_button__common-button-style > .btn').click();
+        cy.get('.underline-link').first().click();
+        cy.wait(700);
+        cy.contains('Edit').click();
         cy.get('[name="name"]').clear();
         cy.get('[name="cronJobPattern"]').clear();
         cy.get('[name="retention"]').clear();
@@ -26,8 +65,9 @@ describe('Manage Backup Profile', () => {
 
         cy.get('#volume-collapse').click();
         cy.get('#system-backup-profile').click();
-        cy.get(':nth-child(1) > :nth-child(3) > .underline-link').click();
-        cy.get('.d-flex > .app_renderer_common_button__common-button-style > .btn').click();
+        cy.get('.underline-link').first().click();
+        cy.wait(700);
+        cy.contains('Edit').click();
         cy.get('[name="name"]').clear().type('Edit-Backup-Profile-1')
         cy.get('[name="description"]').clear().type('test  Edit Backup Profile')
         cy.get('[name="cronJobPattern"]').clear().type('0')
@@ -43,14 +83,15 @@ describe('Manage Backup Profile', () => {
 
         cy.get('#volume-collapse').click();
         cy.get('#system-backup-profile').click();
-        cy.get(':nth-child(1) > :nth-child(3) > .underline-link').click();
-        cy.get('.d-flex > .app_renderer_common_button__common-button-style > .btn').click();
+        cy.get('.underline-link').first().click();
+        cy.wait(700);
+        cy.contains('Edit').click();
         cy.get('[name="name"]').clear().type('Edit-Backup-Profile-1')
         cy.get('[name="description"]').clear().type('test  Edit Backup Profile')
         cy.get('[name="cronJobPattern"]').clear().type('0 10 10 ? * *')
         cy.get('[name="retention"]').clear().type('-0.1')
         cy.get('[type="submit"]').click();
-        cy.get('.text-danger').contains('กรุณากรอกจำนวนมากกว่า หรือเท่ากับ 1 ขึ้นไป')
+        cy.get('.text-danger').contains('Please enter a number greater than or equal to 1 or more.')
         cy.wait(700);
 
     })
@@ -59,8 +100,9 @@ describe('Manage Backup Profile', () => {
 
         cy.get('#volume-collapse').click();
         cy.get('#system-backup-profile').click();
-        cy.get(':nth-child(1) > :nth-child(3) > .underline-link').click();
-        cy.get('.d-flex > .app_renderer_common_button__common-button-style > .btn').click();
+        cy.get('.underline-link').first().click();
+        cy.wait(700);
+        cy.contains('Edit').click();
         cy.get('[name="name"]').clear().type('Edit-Backup-Profile-1')
         cy.get('[name="description"]').clear().type('test  Edit Backup Profile')
         cy.get('[name="cronJobPattern"]').clear().type('0 10 10 ? * *')
@@ -73,8 +115,9 @@ describe('Manage Backup Profile', () => {
 
         cy.get('#volume-collapse').click();
         cy.get('#system-backup-profile').click();
-        cy.get(':nth-child(1) > :nth-child(3) > .underline-link').click();
-        cy.get('.d-flex > .app_renderer_common_button__common-button-style > .btn').click();
+        cy.get('.underline-link').first().click();
+        cy.wait(700);
+        cy.contains('Edit').click();
         cy.wait(300);
         cy.get('.vars-209014119 > .btn').click();
         cy.get('.modal-content')
