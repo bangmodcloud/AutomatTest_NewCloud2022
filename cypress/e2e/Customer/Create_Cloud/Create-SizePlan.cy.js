@@ -7,10 +7,22 @@ describe('Create Size Plan', () => {
 
     })
 
+    it('Usibirities ( The system displayed field labels : Name, Published)', () => {
+
+        cy.get('#cloud-server-collapse').click();
+        cy.get('[href="/cloud/size-plan"]').click();
+        cy.contains('Create Size Plan').click();
+      
+        cy.contains('label', 'Name').should('have.text', 'Name');
+        cy.contains('label', 'Published').should('have.text', 'Published');
+        cy.wait(700);
+
+    })
+
     it('Validation (Admin does not enter Textfield.  The system display alert messsage “ Please input data” )', () => {
 
         cy.get('#cloud-server-collapse').click();
-        cy.get('#cloud-size-plan').click();
+        cy.get('[href="/cloud/size-plan"]').click();
         cy.contains('Create Size Plan').click();
       
         cy.get('[type="submit"]').click();
@@ -22,7 +34,7 @@ describe('Create Size Plan', () => {
     it('Validation (Admin click Cancel button.  The system leads to Manage Distro page.)', () => {
 
         cy.get('#cloud-server-collapse').click();
-        cy.get('#cloud-size-plan').click();
+        cy.get('[href="/cloud/size-plan"]').click();
         cy.contains('Create Size Plan').click();
         cy.wait(300);
         cy.contains('Cancel').click();
@@ -39,7 +51,7 @@ describe('Create Size Plan', () => {
     it('Action success', () => {
 
         cy.get('#cloud-server-collapse').click();
-        cy.get('#cloud-size-plan').click();
+        cy.get('[href="/cloud/size-plan"]').click();
         cy.contains('Create Size Plan').click();
         cy.get('[name="name"]').type('TEST-SIZE-PLAN');
         cy.get('#publish').click();
