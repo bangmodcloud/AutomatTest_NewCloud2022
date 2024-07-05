@@ -8,8 +8,13 @@ describe('Edit Quota', () => {
     })
 
     it('Usibirities ( The system displayed field labels : \
-        General Information card : Name, Description (Optional), \
-        Upload Certificate card : File Format, Upload, Attach Files : .p12 only, maximum file size 5 MB)', () => {
+        Cloud Quota card : Number of Instance, RAM, CPU \
+        Volume Quota card : Volume / Disk \
+        Volume Backup Quota card : Volume / Disk \
+        Floating IP and Public IP Quota card : Number of Floating IP and Public IP \
+        Router Quota card : Number of Router \
+        Load Balancer Quota card : Number of Load Balancer \
+        Security Groups Quota card : Number of Security Group, Number of Security Rule (Inbound + Outbound))', () => {
 
         cy.get('#quota').click();
 
