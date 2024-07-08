@@ -7,6 +7,20 @@ describe('Create Template', () => {
 
     })
 
+    it("Usibirities (The system displayed Field labels as follows: Name, Description, Published)", () => {
+
+        cy.get('#network-collapse').click();
+        cy.get('[href="/cloud/security-group"]').click();
+        cy.contains('Create Template').click();
+       
+        cy.contains('label', 'Name').should('have.text', 'Name')
+        cy.contains('label', 'Description (Optional)').should('have.text', 'Description (Optional)')
+        cy.contains('label', 'Published').should('have.text', 'Published')
+
+        cy.wait(700);
+
+    })
+
     it('Validation (Admin does not enter textfield.  The system display alert messsage “ Please input data” )', () => {
 
         cy.get('#network-collapse').click();
