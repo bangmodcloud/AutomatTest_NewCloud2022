@@ -46,8 +46,8 @@ describe('Overview Volume', () => {
         cy.get('[aria-label="Provisioning Status"] > .ant-table-column-sorters').should('be.visible').dblclick({force: true}); //Provisioning Status
         cy.wait(500);
         cy.get(':nth-child(1) > .ant-table-column-sort > .ant-table-column-sorters').click({force: true}); //Provisioning Status
-        
-        
+
+
         cy.wait(700);
 
 
@@ -98,7 +98,7 @@ describe('Overview Volume', () => {
             cy.get('#search').clear().type('cloud-test-1');
             cy.get('.ant-table-row > :nth-child(1)').should('be.visible');
             cy.wait(1000);
-            
+
 
         })
 
@@ -112,7 +112,7 @@ describe('Overview Volume', () => {
             cy.wait(1000);
             cy.get('.header-30-semibold').contains('Manage User');
             cy.wait(1000);
-            
+
 
         })
 
@@ -125,7 +125,7 @@ describe('Overview Volume', () => {
             cy.wait(1000);
             cy.get('.header-30-semibold').contains('Manage Volume');
             cy.wait(1000);
-            
+
 
         })
 
@@ -139,8 +139,35 @@ describe('Overview Volume', () => {
             cy.wait(1000);
             cy.get('.header-30-semibold').contains('Manage Cloud');
             cy.wait(1000);
-            
+
 
         })
 
+    it('Usibirities (Admin go to Manage Volume page.  The system displayed field labels :)', () => {
+
+        cy.get('#volume-collapse').click();
+        cy.get('[href="/cloud/volume"]').click();
+        cy.get(':nth-child(1) > :nth-child(4) > .underline-link').click();
+        cy.wait(1000);
+
+        cy.contains('.card', 'Volume Information').within(() => {
+            cy.contains('label', 'Name').should('have.text', 'Name')
+            cy.contains('label', 'Description').should('have.text', 'Description')
+            cy.contains('label', 'Size').should('have.text', 'Size')
+            cy.contains('label', 'Type').should('have.text', 'Type')
+            cy.contains('label', 'Bootable').should('have.text', 'Bootable')
+        })
+
+        cy.contains('.card', 'Attached Instance').within(() => {
+            cy.contains('label', 'Instance').should('have.text', 'Instance')
+        })
+
+        cy.contains('.card', 'Automatic Volume Backup').within(() => {
+            cy.contains('div', 'Source Network Address Translation (source-nat or SNAT) allows traffic from a private network to go out to the internet. Virtual machines launched on a private network can get to the internet by going through a gateway capable of performing SNAT.');
+        })
+        cy.wait(700);
+
+
     })
+
+})
