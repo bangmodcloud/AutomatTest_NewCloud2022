@@ -7,6 +7,22 @@ describe('Create Volume Type', () => {
 
     })
 
+    it('Usibirities (Admin go to Manage Volume page.  The system displayed field labels :\
+        Name, Description (Optional and will not be displayed on the customer side), Openstack Volume Type UUID, \
+        Price / 1 GB, Want this volume type to be set to the default size disk cloud?, Published).', () => {
+
+            cy.get('#volume-collapse').click();
+            cy.get('#volume-type').click();
+            cy.contains('Create Volume Type').click();
+            cy.contains('label', 'Name').should('have.text', 'Name')
+            cy.contains('label', 'Description').should('have.text', 'Description (Optional and will not be displayed on the customer side)')
+            cy.contains('label', 'Openstack Volume Type UUID').should('have.text', 'Openstack Volume Type UUID')
+            cy.contains('label', 'Price / 1 GB').should('have.text', 'Price / 1 GB')
+            cy.contains('label', 'Want this volume type to be set to the default size disk cloud?')
+            cy.contains('label', 'Published').should('have.text', 'Published')
+            cy.wait(700);
+    })
+
     it('Validation (Admin does not enter Text field. The system display alert message “Please Input data”.', () => {
 
         cy.get('#volume-collapse').click();
@@ -15,6 +31,7 @@ describe('Create Volume Type', () => {
 
         cy.get('[type="submit"]').click();
         cy.get('.text-danger').contains('Please input data')
+        cy.wait(700);
 
     })
 
@@ -63,6 +80,7 @@ describe('Create Volume Type', () => {
         cy.get('[name="volumeTemplateUUID"]').type('7bc2123f-b584-4770-ae36-f51cb29334b0');
         cy.get('#amount').type('100');
         cy.get('[type="submit"]').click();
+        cy.wait(700);
 
     })
 })

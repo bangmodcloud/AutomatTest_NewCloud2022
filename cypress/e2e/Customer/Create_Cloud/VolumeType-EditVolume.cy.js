@@ -7,6 +7,36 @@ describe('Volume Type / Edit Volume Information', () => {
 
     })
 
+    it('Usibirities (Admin go to Manage Volume page.  The system displayed field labels :\
+        Name, Description (Optional and will not be displayed on the customer side), Openstack Volume Type UUID, \
+        Price / 1 GB, Want this volume type to be set to the default size disk cloud?, Published).', () => {
+
+            cy.get('#volume-collapse').click();
+            cy.get('#volume-type').click();
+            cy.get('.ant-table-tbody > :nth-child(1) > :nth-child(3) > a').click();
+            cy.contains('label', 'Name').should('have.text', 'Name')
+            cy.contains('label', 'Description').should('have.text', 'Description')
+            cy.contains('label', 'Openstack volume type UUID').should('have.text', 'Openstack volume type UUID')
+            cy.contains('label', 'Price / 1 GB').should('have.text', 'Price / 1 GB')
+            cy.contains('label', 'Want this Volume Type to be set to the default Size Disk Cloud.')
+            cy.wait(700);
+    })
+
+    it('Usibirities (Admin go to Manage Volume page.  The system displayed field labels :\
+        Name, Description (Optional and will not be displayed on the customer side), Openstack Volume Type UUID, \
+        Price / 1 GB, Want this volume type to be set to the default size disk cloud?, Published).', () => {
+
+            cy.get('#volume-collapse').click();
+            cy.get('#volume-type').click();
+            cy.get('.ant-table-tbody > :nth-child(1) > :nth-child(3) > a').click();
+            cy.contains('Edit').click();
+            cy.contains('label', 'Name').should('have.text', 'Name')
+            cy.contains('label', 'Description').should('have.text', 'Description (Optional and will not be displayed on the customer side)')
+            cy.contains('label', 'Openstack Volume Type UUID').should('have.text', 'Openstack Volume Type UUID')
+            cy.contains('label', 'Price / 1 GB').should('have.text', 'Price / 1 GB')
+            cy.wait(700);
+    })
+
     it('Validation (Admin click Edit button. The system set Price / 1 GB = disabled.', () => {
 
         cy.get('#volume-collapse').click();
